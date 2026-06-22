@@ -85,9 +85,10 @@
   scrollbar-width: none; /* Firefox */
 }
 
-/* Base HTML/Body Styles for iOS Bounce styling */
+/* Base HTML/Body Styles for iOS/Mobile */
 html {
   background-color: var(--panel);
+  touch-action: manipulation;
 }
 
 body {
@@ -97,6 +98,7 @@ body {
   user-select: none;
   background-color: var(--panel);
   color: var(--text);
+  touch-action: manipulation;
 }
 
 #root {
