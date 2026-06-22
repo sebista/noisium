@@ -92,7 +92,7 @@
             {audio.formatTimerTime(audio.timerSeconds)}
           </div>
           <span class="text-xs block mb-4 text-muted">
-            Remaining until mix pauses
+            Remaining until pause
           </span>
           <Button
             variant="primary"
