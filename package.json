@@ -1,0 +1,74 @@
+{
+  "name": "noisium",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Create your own ambience.",
+  "author": "coaril",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "dev": "vite",
+    "dev:pages": "bun run build && wrangler pages dev",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
+    "build": "tsc -b && vite build",
+    "deploy": "bun run build && wrangler pages deploy",
+    "build:win": "bun run build && electron-builder --win --x64",
+    "build:mac": "bun run build && electron-builder --mac --arm64",
+    "build:linux": "bun run build && electron-builder --linux",
+    "build:linux:deb": "bun run build && electron-builder --linux deb",
+    "build:linux:rpm": "bun run build && electron-builder --linux rpm"
+  },
+  "build": {
+    "appId": "com.noisium.ambientplayer",
+    "productName": "Noisium",
+    "directories": {
+      "output": "dist/electron"
+    },
+    "files": [
+      "dist/web/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always"
+    },
+    "linux": {
+      "maintainer": "coaril"
+    }
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "clsx": "^2.1.1",
+    "lucide-svelte": "^1.0.1",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/node": "^24.12.3",
+    "electron": "^42.4.1",
+    "electron-builder": "^26.15.3",
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.4",
+    "svelte": "^5.55.5",
+    "svelte-check": "^4.4.8",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12",
+    "wrangler": "^4.103.0"
+  }
+}
