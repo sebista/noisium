@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-primary-hover: color-mix(in oklab, var(--primary-color) 85%, black);
+
+  --color-background: var(--window);
+  --color-surface: var(--card);
+  --color-panel: var(--panel);
+  --color-divider: var(--border);
+  --color-foreground: var(--text);
+  --color-muted: var(--muted);
+
+  --color-slider-track: var(--slider-track);
+  --color-thumb: var(--color-white);
+  --color-inactive-thumb: var(--muted);
+  --color-hover: var(--hover-overlay);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', system-ui, sans-serif;
+
+  --animate-pulse-slow: pulse-gentle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+:root {
+  --primary-color: #3584e4; /* Gnome primary blue */
+
+  --window: #eeedea;
+  --card: #ffffff;
+  --panel: #f6f5f4;
+  --border: #d6d6d6;
+  --text: #2e3436;
+  --muted: #777777;
+  --slider-track: rgba(0, 0, 0, 0.1);
+  --hover-overlay: #e5e4e0;
+}
+
+.dark {
+  --window: #242424;
+  --card: #2d2d2d;
+  --panel: #1d1d1d;
+  --border: #3f3f3f;
+  --text: #eeeeec;
+  --muted: #a0a0a0;
+  --slider-track: rgba(255, 255, 255, 0.1);
+  --hover-overlay: #373737;
+}
+
+@keyframes pulse-gentle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.5);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Base HTML/Body Styles for iOS Bounce styling */
+html {
+  background-color: var(--panel);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  overflow: hidden;
+  user-select: none;
+  background-color: var(--panel);
+  color: var(--text);
+}
+
+#root {
+  min-height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Electron Dragging */
+.app-drag {
+  -webkit-app-region: drag;
+}
+
+.app-drag button,
+.app-drag a,
+.app-drag input,
+.app-drag select,
+.app-drag [role='button'],
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
