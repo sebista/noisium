@@ -34,7 +34,7 @@
       </svg>
     </a>
     
-    <Button variant="primary" onclick={() => audio.isAboutDialogOpen = false}>
+    <Button variant="primary" onclick={() => audio.isAboutDialogOpen = false} autofocus>
       Close
     </Button>
   </div>
