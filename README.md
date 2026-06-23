@@ -12,7 +12,7 @@
 
 An ambient sound mixer designed to help you focus, relax, or block out distracting noise.
 
-Web first, this is a Svelte rewrite and modernization of an old React project of mine with the same name, which was inspired by GNOME's **[Blanket](https://github.com/rafaelmardojai/blanket)**.
+Web first, this is a Svelte rewrite and modernization of an old React project of mine, which itself was inspired by GNOME's **[Blanket](https://github.com/rafaelmardojai/blanket)**.
 
 ## Features
 
