@@ -111,7 +111,7 @@
                 title="Update preset sounds"
               />
               <DeleteButton
-                onclick={(e) => { audio.handleDeletePreset(name, e); }}
+                onclick={(e) => { audio.handleOpenDeleteDialog(name, e); close(); }}
                 class="opacity-0 group-hover:opacity-100"
                 title="Delete preset"
               />
