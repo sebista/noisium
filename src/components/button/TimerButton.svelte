@@ -53,6 +53,7 @@
         : 'bg-surface hover:bg-hover border-divider text-foreground'
     )}
     aria-label="Toggle Sleep Timer"
+    title="Sleep timer"
   >
     <Clock class="w-4.5 h-4.5" />
 
