@@ -21,6 +21,8 @@ class AudioManager {
   renamePresetValue = $state('')
   isOverwriteDialogOpen = $state(false)
   overwritePresetTarget = $state('')
+  isDeleteDialogOpen = $state(false)
+  deletePresetTarget = $state('')
   isAboutDialogOpen = $state(false)
   timerSeconds = $state<number | null>(null)
   timerActive = $state(false)
@@ -433,13 +435,24 @@ class AudioManager {
     this.isOverwriteDialogOpen = false
   }
 
-  handleDeletePreset(name: string, e: MouseEvent) {
+  handleOpenDeleteDialog(name: string, e: MouseEvent) {
     e.stopPropagation()
+    this.deletePresetTarget = name
+    this.isDeleteDialogOpen = true
+  }
+
+  handleDeletePreset() {
+    const name = this.deletePresetTarget
+    if (!name) return
+
     delete this.presets[name]
 
     const customOnly = { ...this.presets }
     Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
     localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+
+    this.isDeleteDialogOpen = false
+    this.deletePresetTarget = ''
   }
 }
 

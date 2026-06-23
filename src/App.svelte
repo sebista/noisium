@@ -9,6 +9,7 @@
   import SavePresetDialog from '@/components/dialog/SavePresetDialog.svelte'
   import RenamePresetDialog from '@/components/dialog/RenamePresetDialog.svelte'
   import OverwritePresetDialog from '@/components/dialog/OverwritePresetDialog.svelte'
+  import DeletePresetDialog from '@/components/dialog/DeletePresetDialog.svelte'
   import AboutDialog from '@/components/dialog/AboutDialog.svelte'
 
   // Reactively sync audio player elements when audio manager state changes
@@ -55,4 +56,5 @@
 <SavePresetDialog />
 <RenamePresetDialog />
 <OverwritePresetDialog />
+<DeletePresetDialog />
 <AboutDialog />
