@@ -8,6 +8,7 @@
   variant="icon"
   onclick={() => audio.isAboutDialogOpen = true}
   aria-label="About Noisium"
+  title="About"
 >
   <Info class="w-4.5 h-4.5" />
 </Button>

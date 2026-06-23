@@ -47,6 +47,7 @@
     variant="icon"
     onclick={toggle}
     aria-label="Customize primary color"
+    title="Customize theme color"
   >
     <Paintbrush class="w-4.5 h-4.5" />
   </Button>

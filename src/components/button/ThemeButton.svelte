@@ -8,6 +8,7 @@
   variant="icon"
   onclick={() => theme.toggleTheme()}
   aria-label="Toggle Theme"
+  title="Toggle theme"
 >
   {#if theme.darkMode}
     <Sun class="w-4.5 h-4.5" />
