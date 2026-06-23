@@ -102,17 +102,14 @@
             <div class="flex items-center gap-1 shrink-0">
               <RenameButton
                 onclick={(e) => { audio.handleOpenRenameDialog(name, e); close(); }}
-                class="opacity-0 group-hover:opacity-100"
                 title="Rename preset"
               />
               <OverwriteButton
                 onclick={(e) => { audio.handleOpenOverwriteDialog(name, e); close(); }}
-                class="opacity-0 group-hover:opacity-100"
                 title="Update preset sounds"
               />
               <DeleteButton
                 onclick={(e) => { audio.handleOpenDeleteDialog(name, e); close(); }}
-                class="opacity-0 group-hover:opacity-100"
                 title="Delete preset"
               />
             </div>
