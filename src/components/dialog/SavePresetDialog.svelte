@@ -24,12 +24,14 @@
   </p>
   
   <div class="flex flex-col gap-3.5 mb-5">
+    <!-- svelte-ignore a11y_autofocus -->
     <input
       type="text"
       placeholder="e.g. Workspace Rain, Afternoon Café"
       bind:value={audio.newPresetName}
       onkeydown={handleModalKeydown}
       class="w-full border border-divider rounded-2xl px-3 py-2 text-xs focus:outline-none focus:border-primary placeholder:text-muted font-medium bg-surface text-foreground"
+      autofocus
     />
   </div>
   
