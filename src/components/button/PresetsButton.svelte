@@ -5,7 +5,6 @@
   import { cn } from '@/lib/utils';
   import DeleteButton from './DeleteButton.svelte';
   import { onMount, onDestroy } from 'svelte';
-  import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
 
   let {
@@ -51,16 +50,6 @@
   let hasCustomPresets = $derived(
     Object.keys(audio.presets).some((k) => !builtinPresetNames.includes(k))
   );
-
-  function handleModalCancel() {
-    audio.isPresetDialogOpen = false;
-  }
-
-  function handleModalKeydown(e: KeyboardEvent) {
-    if (e.key === 'Enter' && audio.newPresetName.trim()) {
-      audio.handleSavePreset();
-    }
-  }
 </script>
 
 <div class="relative inline-block text-left" bind:this={containerEl}>
@@ -129,39 +118,3 @@
   {/if}
 </div>
 
-<!-- Save Custom Preset Modal Dialog -->
-<Dialog bind:open={audio.isPresetDialogOpen} onclose={handleModalCancel}>
-  <h2 class="text-sm font-bold mb-2 uppercase tracking-wider text-foreground font-heading">
-    Save Current Sound Mix
-  </h2>
-  
-  <p class="text-xs mb-5 text-muted">
-    Enter a custom name for this combination of sounds and volumes.
-  </p>
-  
-  <div class="flex flex-col gap-3.5 mb-5">
-    <input
-      type="text"
-      placeholder="e.g. Workspace Rain, Afternoon Café"
-      bind:value={audio.newPresetName}
-      onkeydown={handleModalKeydown}
-      class="w-full border border-divider rounded-2xl px-3 py-2 text-xs focus:outline-none focus:border-primary placeholder:text-muted font-medium bg-surface text-foreground"
-    />
-  </div>
-  
-  <div class="flex justify-end gap-2">
-    <Button
-      variant="secondary"
-      onclick={handleModalCancel}
-    >
-      Cancel
-    </Button>
-    <Button
-      variant="primary"
-      onclick={() => audio.handleSavePreset()}
-      disabled={!audio.newPresetName.trim()}
-    >
-      Save Preset
-    </Button>
-  </div>
-</Dialog>
