@@ -6,6 +6,9 @@
   import { audio } from '@/lib/audio.svelte'
   import { theme } from '@/lib/theme.svelte'
 
+  import SavePresetDialog from '@/components/dialog/SavePresetDialog.svelte'
+  import AboutDialog from '@/components/dialog/AboutDialog.svelte'
+
   // Reactively sync audio player elements when audio manager state changes
   $effect(() => {
     audio.syncAudio()
@@ -46,3 +49,6 @@
 
   <Footer />
 </div>
+
+<SavePresetDialog />
+<AboutDialog />

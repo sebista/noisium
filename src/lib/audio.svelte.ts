@@ -16,6 +16,7 @@ class AudioManager {
   presets = $state<Record<string, Record<string, number>>>({})
   newPresetName = $state('')
   isPresetDialogOpen = $state(false)
+  isAboutDialogOpen = $state(false)
   timerSeconds = $state<number | null>(null)
   timerActive = $state(false)
   customTimerMinutes = $state(20)
