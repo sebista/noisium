@@ -2,6 +2,7 @@
   import { Volume2, VolumeX, Play, Pause } from 'lucide-svelte';
   import { audio } from '@/lib/audio.svelte';
   import Slider from './ui/Slider.svelte';
+  import Button from './ui/Button.svelte';
 
   function handlePlayPause() {
     if (audio.activeSoundsText) {
@@ -42,17 +43,18 @@
 
   <!-- Right: Master volume controls -->
   <div class="flex items-center justify-end gap-1.5 sm:gap-2.5 w-[30%] min-w-0 shrink-0 z-10">
-    <button
+    <Button
+      variant="ghost"
       onclick={handleMuteToggle}
-      class="hover:text-primary transition-colors cursor-pointer p-1 border-0 bg-transparent outline-none text-foreground"
       aria-label={audio.globalVolume === 0 ? 'Unmute' : 'Mute'}
+      title={audio.globalVolume === 0 ? 'Unmute' : 'Mute'}
     >
       {#if audio.globalVolume === 0}
         <VolumeX class="w-4 h-4" />
       {:else}
         <Volume2 class="w-4 h-4" />
       {/if}
-    </button>
+    </Button>
     <div class="grow max-w-30 sm:max-w-40">
       <Slider
         min={0}
