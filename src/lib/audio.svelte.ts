@@ -16,6 +16,11 @@ class AudioManager {
   presets = $state<Record<string, Record<string, number>>>({})
   newPresetName = $state('')
   isPresetDialogOpen = $state(false)
+  isRenameDialogOpen = $state(false)
+  renamePresetTarget = $state('')
+  renamePresetValue = $state('')
+  isOverwriteDialogOpen = $state(false)
+  overwritePresetTarget = $state('')
   isAboutDialogOpen = $state(false)
   timerSeconds = $state<number | null>(null)
   timerActive = $state(false)
@@ -365,6 +370,67 @@ class AudioManager {
 
     this.newPresetName = ''
     this.isPresetDialogOpen = false
+  }
+
+  handleOpenRenameDialog(name: string, e: MouseEvent) {
+    e.stopPropagation()
+    this.renamePresetTarget = name
+    this.renamePresetValue = name
+    this.isRenameDialogOpen = true
+  }
+
+  handleRenamePreset() {
+    const oldName = this.renamePresetTarget
+    const newName = this.renamePresetValue.trim()
+    if (!newName || oldName === newName) {
+      this.isRenameDialogOpen = false
+      return
+    }
+
+    if (this.presets[newName]) {
+      alert(`A preset named "${newName}" already exists.`)
+      return
+    }
+
+    this.presets[newName] = this.presets[oldName]
+    delete this.presets[oldName]
+
+    const customOnly = { ...this.presets }
+    Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
+    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+
+    this.isRenameDialogOpen = false
+  }
+
+  handleOpenOverwriteDialog(name: string, e: MouseEvent) {
+    e.stopPropagation()
+    this.overwritePresetTarget = name
+    this.isOverwriteDialogOpen = true
+  }
+
+  handleOverwritePreset() {
+    const name = this.overwritePresetTarget
+    if (!name) return
+
+    const activeVolumes: Record<string, number> = {}
+    Object.keys(this.soundStates).forEach((id) => {
+      if (this.soundStates[id].active) {
+        activeVolumes[id] = this.soundStates[id].volume
+      }
+    })
+
+    if (Object.keys(activeVolumes).length === 0) {
+      alert('Cannot save empty preset! Play some sounds first.')
+      return
+    }
+
+    this.presets[name] = activeVolumes
+
+    const customOnly = { ...this.presets }
+    Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
+    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+
+    this.isOverwriteDialogOpen = false
   }
 
   handleDeletePreset(name: string, e: MouseEvent) {

@@ -4,6 +4,8 @@
   import { BUILTIN_PRESETS } from '@/lib/presets';
   import { cn } from '@/lib/utils';
   import DeleteButton from './DeleteButton.svelte';
+  import RenameButton from './RenameButton.svelte';
+  import OverwriteButton from './OverwriteButton.svelte';
   import { onMount, onDestroy } from 'svelte';
   import Button from '../ui/Button.svelte';
 
@@ -97,11 +99,23 @@
             onkeydown={(e) => e.key === 'Enter' && audio.handleLoadPreset(name)}
           >
             <span class="truncate pr-2">{name}</span>
-            <DeleteButton
-              onclick={(e) => { audio.handleDeletePreset(name, e); }}
-              class="opacity-0 group-hover:opacity-100"
-              title="Delete preset"
-            />
+            <div class="flex items-center gap-1 shrink-0">
+              <RenameButton
+                onclick={(e) => { audio.handleOpenRenameDialog(name, e); close(); }}
+                class="opacity-0 group-hover:opacity-100"
+                title="Rename preset"
+              />
+              <OverwriteButton
+                onclick={(e) => { audio.handleOpenOverwriteDialog(name, e); close(); }}
+                class="opacity-0 group-hover:opacity-100"
+                title="Update preset sounds"
+              />
+              <DeleteButton
+                onclick={(e) => { audio.handleDeletePreset(name, e); }}
+                class="opacity-0 group-hover:opacity-100"
+                title="Delete preset"
+              />
+            </div>
           </div>
         {/each}
       {/if}
