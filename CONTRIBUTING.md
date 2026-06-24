@@ -14,13 +14,12 @@ bun run build
 
 ### Components
 
-- UI elements in `src/components/ui/` (e.g., buttons, cards).
-- Larger structural layouts in `src/components/layout/` (e.g., sidebar, header, footer).
-- Barrel components from their respective folders using entry `index.ts` files to simplify imports.
+- Core UI elements are located in `src/components/ui/` (e.g., buttons, dialogs, sliders).
+- Larger layout/structural components are directly in `src/components/` (e.g., `Header.svelte`, `Footer.svelte`, `Sidebar.svelte`, `Main.svelte`).
 
 ### Styling
 
-- Use already defined theme variables (e.g., `bg-background`, `bg-surface`, `bg-panel`, `border-divider`, `text-foreground`, `text-muted`, `bg-slider-track`, `bg-inactive-thumb`, `bg-hover`) defined in [src/index.css](src/index.css) rather than manually checking `darkMode` state.
+- Use already defined Tailwind v4 theme utility classes (e.g., `bg-background`, `bg-surface`, `bg-panel`, `border-divider`, `text-foreground`, `text-muted`, `bg-slider-track`, `bg-inactive-thumb`, `bg-hover`) configured in the `@theme` directive in [src/index.css](src/index.css) rather than manually tracking theme states.
 - Use `rounded-2xl` as the standard border radius for containers, buttons, cards, and modal dialogs. Use `rounded-full` for circular shapes (toggles, sliders, status counts).
 - Refrain from using enlarging or scaling effects (e.g., `hover:scale-110` or `focus:scale-110`) on hover/focus states for buttons, slider thumbs, or other interactive elements. Keep component dimensions stable.
 
@@ -29,7 +28,7 @@ bun run build
 Use the `@/` path alias to reference files relative to the `src/` directory if they are outside the current file directory:
 
 ```typescript
-import { useAudio } from '@/context/AudioContext'
+import { audio } from '@/lib/audio.svelte'
 import { cn } from '@/lib/utils'
 ```
 
