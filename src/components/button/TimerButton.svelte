@@ -88,7 +88,7 @@
       </span>
 
       {#if audio.timerSeconds !== null}
-        <div class="text-center py-2">
+        <div class="text-center">
           <div class="text-3xl font-mono font-bold mb-2 text-foreground">
             {audio.formatTimerTime(audio.timerSeconds)}
           </div>
