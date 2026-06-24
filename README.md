@@ -49,11 +49,12 @@ bun run build
 
 ## Technologies
 
+- Svelte 5
+- Tauri
 - Vite
-- Svelte
-- Tailwind
+- Tailwind CSS
 - Lucide Svelte
-- Electron
+- Bun
 
 ## Contributing
 
