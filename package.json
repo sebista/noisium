@@ -14,6 +14,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "build": "tsc -b && vite build",
     "deploy": "bun run build && wrangler pages deploy",
+    "tauri:icon": "tauri icon icon.png",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build"
