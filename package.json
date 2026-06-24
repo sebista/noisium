@@ -5,7 +5,6 @@
   "description": "Create your own ambience.",
   "author": "sebilune",
   "type": "module",
-  "main": "electron/main.cjs",
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -15,40 +14,13 @@
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "build": "tsc -b && vite build",
     "deploy": "bun run build && wrangler pages deploy",
-    "build:win": "bun run build && electron-builder --win --x64",
-    "build:mac": "bun run build && electron-builder --mac --arm64",
-    "build:linux": "bun run build && electron-builder --linux",
-    "build:linux:deb": "bun run build && electron-builder --linux deb",
-    "build:linux:rpm": "bun run build && electron-builder --linux rpm"
-  },
-  "build": {
-    "appId": "com.noisium.ambientplayer",
-    "productName": "Noisium",
-    "directories": {
-      "output": "dist/electron"
-    },
-    "files": [
-      "dist/web/**/*",
-      "electron/**/*",
-      "package.json"
-    ],
-    "win": {
-      "target": [
-        "nsis",
-        "zip"
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": "always"
-    },
-    "linux": {
-      "maintainer": "sebilune"
-    }
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.1",
+    "@tauri-apps/api": "^2.11.1",
     "clsx": "^2.1.1",
     "lucide-svelte": "^1.0.1",
     "tailwind-merge": "^3.6.0",
@@ -57,10 +29,9 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@tauri-apps/cli": "^2.11.3",
     "@tsconfig/svelte": "^5.0.8",
     "@types/node": "^24.12.3",
-    "electron": "^42.4.1",
-    "electron-builder": "^26.15.3",
     "eslint": "^10.3.0",
     "globals": "^17.6.0",
     "prettier": "^3.8.4",

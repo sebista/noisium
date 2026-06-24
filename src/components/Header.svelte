@@ -6,7 +6,7 @@
   import ThemeButton from './button/ThemeButton.svelte'
   import AboutButton from './button/AboutButton.svelte'
   import Logo from './Logo.svelte'
-  import WindowControls from './electron/WindowControls.svelte'
+  import WindowControls from './tauri/WindowControls.svelte'
 </script>
 
 <header class="h-[calc(4rem+env(safe-area-inset-top))] pt-[env(safe-area-inset-top)] pl-[calc(1rem+env(safe-area-inset-left))] pr-[calc(1rem+env(safe-area-inset-right))] sm:pl-[calc(1.5rem+env(safe-area-inset-left))] sm:pr-[calc(1.5rem+env(safe-area-inset-right))] flex items-center justify-between border-b border-divider bg-panel shrink-0 select-none app-drag">
