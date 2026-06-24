@@ -55,16 +55,17 @@ bun run build
   </a>
 </p>
 
-- Svelte
-- Tauri
-- Vite
-- Tailwind CSS
-- Lucide Svelte
-- Bun
+- **[Svelte:](https://svelte.dev/)** Component framework.
+- **[TypeScript:](https://www.typescriptlang.org/)** Typed superset of JavaScript.
+- **[Tauri:](https://tauri.app/)** Desktop web-app framework.
+- **[Vite:](https://vite.dev/)** Build tool for modern web apps.
+- **[Tailwind CSS:](https://tailwindcss.com/)** Utility CSS framework.
+- **[Lucide Svelte:](https://lucide.dev/)** Icons library.
+- **[Bun:](https://bun.sh/)** JavaScript runtime and package manager.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our coding standards and development guidelines.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on Noisium's development guidelines.
 
 ## LICENSE
 
