@@ -28,3 +28,7 @@ dist-ssr
 
 # Electron
 dist-electron
+
+# Tauri
+src-tauri/target
+src-tauri/gen
