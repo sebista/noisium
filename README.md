@@ -49,7 +49,13 @@ bun run build
 
 ## Technologies
 
-- Svelte 5
+<p align="left">
+  <a href="https://github.com/sebilune">
+    <img src="https://skillicons.dev/icons?i=svelte,tauri,vite,tailwind,ts,bun&perline=8" />
+  </a>
+</p>
+
+- Svelte
 - Tauri
 - Vite
 - Tailwind CSS
