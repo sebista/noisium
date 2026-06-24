@@ -40,7 +40,7 @@
       const val = Number((e.target as HTMLInputElement).value);
       if (oninput) oninput(val);
     }}
-    class="peer absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+    class="peer absolute inset-0 w-full h-full opacity-0 cursor-pointer"
   />
 
   <!-- Custom slider thumb -->
