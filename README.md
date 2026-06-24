@@ -38,13 +38,30 @@ Todo
 
 ## Build From Source
 
-### Web
+Ensure you have [Bun](https://bun.sh/) installed. For desktop builds, you will also need [Rust](https://www.rust-lang.org/) and [Tauri's prerequisites](https://tauri.app/start/prerequisites/) for your system.
 
-Ensure you have Bun or Node.js installed. Then run:
+### Install Dependencies
 
 ```bash
 bun install
+```
+
+### Build
+
+#### Web
+
+To build the web assets (files will be compiled to `dist/web`):
+
+```bash
 bun run build
+```
+
+#### Desktop
+
+To build the desktop app (Tauri will automatically compile and package it for the operating system you are currently using to `src-tauri/target/release`):
+
+```bash
+bun run tauri:build
 ```
 
 ## Technologies
