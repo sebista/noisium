@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Lock files
+bun.lock
+src-tauri/Cargo.lock
+
 # Cloudfare
 .wrangler
 
