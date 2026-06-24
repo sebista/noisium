@@ -46,9 +46,7 @@ Ensure you have [Bun](https://bun.sh/) installed. For desktop builds, you will a
 bun install
 ```
 
-### Build
-
-#### Web
+### Web
 
 To build the web assets (files will be compiled to `dist/web`):
 
@@ -56,7 +54,7 @@ To build the web assets (files will be compiled to `dist/web`):
 bun run build
 ```
 
-#### Desktop
+### Desktop
 
 To build the desktop app (Tauri will automatically compile and package it for the operating system you are currently using to `src-tauri/target/release`):
 
