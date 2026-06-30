@@ -145,7 +145,7 @@ class AudioManager {
       try {
         audio.volume = Math.max(0, Math.min(1, targetActualVolume))
       } catch {
-        // ignore
+        // Ignore
       }
 
       if (targetActualVolume > 0) {
