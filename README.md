@@ -82,6 +82,6 @@ bun run tauri:build
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on Noisium's development guidelines.
 
-## LICENSE
+## License
 
-Todo
+This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)** License. See the [LICENSE.md](LICENSE.md) file for details.
