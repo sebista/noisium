@@ -20,7 +20,7 @@
           'w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-left text-xs font-semibold transition-all cursor-pointer select-none border-0 bg-transparent outline-none',
           isActive
             ? 'bg-primary text-white'
-            : 'hover:bg-foreground/5 hover:text-foreground text-foreground/80'
+            : 'hover:bg-hover hover:text-foreground text-foreground/80'
         )}
       >
         <div class="flex items-center gap-2.5">
