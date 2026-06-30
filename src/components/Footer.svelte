@@ -50,9 +50,9 @@
       title={audio.globalVolume === 0 ? 'Unmute' : 'Mute'}
     >
       {#if audio.globalVolume === 0}
-        <VolumeX class="w-4 h-4" />
+        <VolumeX class="w-4.5 h-4.5" />
       {:else}
-        <Volume2 class="w-4 h-4" />
+        <Volume2 class="w-4.5 h-4.5" />
       {/if}
     </Button>
     <div class="grow max-w-30 sm:max-w-40">
