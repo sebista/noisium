@@ -4,28 +4,26 @@
   import { isTauri } from '@tauri-apps/api/core';
   import { getCurrentWindow } from '@tauri-apps/api/window';
 
-  const runningInTauri = isTauri();
-
   function minimize() {
-    if (runningInTauri) {
+    if (isTauri()) {
       getCurrentWindow().minimize();
     }
   }
 
   function toggleMaximize() {
-    if (runningInTauri) {
+    if (isTauri()) {
       getCurrentWindow().toggleMaximize();
     }
   }
 
   function close() {
-    if (runningInTauri) {
+    if (isTauri()) {
       getCurrentWindow().close();
     }
   }
 </script>
 
-{#if runningInTauri}
+{#if isTauri()}
   <div class="h-6 w-px bg-divider mx-1 lg:mx-2 app-no-drag"></div>
 
   <div class="flex items-center gap-2 app-no-drag">
