@@ -1,10 +1,14 @@
 <script lang="ts">
+  import { audio } from '@/lib/audio.svelte'
+  import { theme } from '@/lib/theme.svelte'
+
+  import { getCurrentWindow } from '@tauri-apps/api/window'
+  import { isTauri } from '@tauri-apps/api/core';
+
   import Header from '@/components/Header.svelte'
   import Sidebar from '@/components/Sidebar.svelte'
   import Main from '@/components/Main.svelte'
   import Footer from '@/components/Footer.svelte'
-  import { audio } from '@/lib/audio.svelte'
-  import { theme } from '@/lib/theme.svelte'
 
   import SavePresetDialog from '@/components/dialog/SavePresetDialog.svelte'
   import RenamePresetDialog from '@/components/dialog/RenamePresetDialog.svelte'
@@ -29,6 +33,13 @@
   // Reactively sync DOM primary-color variable when theme state changes
   $effect(() => {
     document.documentElement.style.setProperty('--primary-color', theme.primaryColor)
+  })
+
+  // On the desktop build, show window once the frontend mounts
+  $effect(() => {
+    if (isTauri()) {
+      getCurrentWindow().show()
+    }
   })
 
   // Reactively tick sleep timer when it is active and audio is playing
