@@ -19,7 +19,10 @@
     <script>
       ;(function () {
         const savedDark = localStorage.getItem('noisium_dark_mode')
-        const isDark = savedDark !== null ? savedDark === 'true' : true
+        const isDark =
+          savedDark !== null
+            ? savedDark === 'true'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
         if (isDark) {
           document.documentElement.classList.add('dark')
         }

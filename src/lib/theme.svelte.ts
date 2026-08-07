@@ -1,14 +1,24 @@
 class ThemeManager {
-  darkMode = $state(true)
+  darkMode = $state(
+    typeof window !== 'undefined'
+      ? (() => {
+          try {
+            const storedDark = localStorage.getItem('noisium_dark_mode')
+            if (storedDark !== null) {
+              return JSON.parse(storedDark)
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches
+          } catch {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches
+          }
+        })()
+      : true,
+  )
   primaryColor = $state('#3584e4')
 
   constructor() {
     if (typeof window !== 'undefined') {
       try {
-        const storedDark = localStorage.getItem('noisium_dark_mode')
-        if (storedDark !== null) {
-          this.darkMode = JSON.parse(storedDark)
-        }
         const storedColor = localStorage.getItem('noisium_primary_color')
         if (storedColor !== null) {
           this.primaryColor = JSON.parse(storedColor)
