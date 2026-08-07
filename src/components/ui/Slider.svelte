@@ -27,7 +27,7 @@
     <!-- Active colored range bar showing progress for both active and inactive -->
     <div
       class="h-full rounded-full transition-all duration-75"
-      style="width: {percentage}%; background-color: {disabled ? 'var(--color-inactive-thumb)' : 'var(--color-primary)'}; opacity: {disabled ? 0.5 : 1};"
+      style="width: {percentage}%; background-color: {disabled ? 'var(--color-slider-progress-inactive)' : 'var(--color-primary)'};"
     ></div>
   </div>
 
