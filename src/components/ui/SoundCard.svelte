@@ -51,8 +51,8 @@
   class={cn(
     'border rounded-2xl p-4 flex flex-col justify-between relative group select-none transition-all',
     state.active
-      ? 'bg-primary/5 border-primary/30 text-foreground'
-      : 'bg-surface/65 border-divider text-foreground/80 hover:bg-hover'
+      ? 'bg-surface dark:bg-surface/65 bg-primary/5 border-primary/30 text-foreground'
+      : 'bg-surface dark:bg-surface/65 border-divider text-foreground/80 hover:bg-hover'
   )}
 >
   <!-- Card Top: Toggle sound active -->

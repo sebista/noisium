@@ -28,6 +28,7 @@
   --color-muted: var(--muted);
 
   --color-slider-track: var(--slider-track);
+  --color-slider-track-inactive: var(--slider-track-inactive);
   --color-thumb: var(--color-white);
   --color-inactive-thumb: var(--muted);
   --color-hover: var(--hover-overlay);
@@ -41,14 +42,15 @@
 :root {
   --primary-color: #3584e4; /* Gnome primary blue */
 
-  --window: #eeedea;
+  --window: #fafaf9;
   --card: #ffffff;
-  --panel: #f6f5f4;
+  --panel: #ffffff;
   --border: #d6d6d6;
   --text: #2e3436;
   --muted: #777777;
-  --slider-track: rgba(0, 0, 0, 0.1);
-  --hover-overlay: #e5e4e0;
+  --slider-track: rgba(0, 0, 0, 0.12);
+  --slider-track-inactive: rgba(0, 0, 0, 0.05);
+  --hover-overlay: #f7f7f5;
 }
 
 .dark {
@@ -59,6 +61,7 @@
   --text: #eeeeec;
   --muted: #a0a0a0;
   --slider-track: rgba(255, 255, 255, 0.1);
+  --slider-track-inactive: rgba(255, 255, 255, 0.05);
   --hover-overlay: #373737;
 }
 
