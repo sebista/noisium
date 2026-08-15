@@ -11,6 +11,7 @@ import { BUILTIN_PRESETS } from './presets'
 class AudioManager {
   isPlaying = $state(false)
   globalVolume = $state(80)
+  previousVolume = 80
   soundStates = $state<Record<string, SoundState>>({})
   customSounds = $state<SoundDefinition[]>([])
   presets = $state<Record<string, Record<string, number>>>({})
@@ -39,6 +40,9 @@ class AudioManager {
         const vol = localStorage.getItem('noisium_global_volume')
         if (vol !== null) {
           this.globalVolume = JSON.parse(vol)
+          if (this.globalVolume > 0) {
+            this.previousVolume = this.globalVolume
+          }
         }
       } catch (e) {
         console.warn('Error reading global volume from localStorage:', e)
@@ -95,9 +99,21 @@ class AudioManager {
 
   // Save states helper
   saveGlobalVolume(val: number) {
+    if (val > 0) {
+      this.previousVolume = val
+    }
     this.globalVolume = val
     if (typeof window !== 'undefined') {
       localStorage.setItem('noisium_global_volume', JSON.stringify(val))
+    }
+  }
+
+  toggleMute() {
+    if (this.globalVolume === 0) {
+      this.saveGlobalVolume(this.previousVolume > 0 ? this.previousVolume : 80)
+    } else {
+      this.previousVolume = this.globalVolume
+      this.saveGlobalVolume(0)
     }
   }
 

@@ -11,7 +11,7 @@
   }
 
   function handleMuteToggle() {
-    audio.saveGlobalVolume(audio.globalVolume === 0 ? 80 : 0);
+    audio.toggleMute();
   }
 </script>
 
