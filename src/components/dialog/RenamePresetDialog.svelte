@@ -1,5 +1,6 @@
 <script lang="ts">
   import { audio } from '@/lib/audio.svelte';
+  import { BUILTIN_PRESETS } from '@/lib/presets';
   import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
 
@@ -7,8 +8,22 @@
     audio.isRenameDialogOpen = false;
   }
 
+  let trimmedName = $derived(audio.renamePresetValue.trim());
+  let isDuplicate = $derived(
+    trimmedName !== audio.renamePresetTarget &&
+    (Boolean(BUILTIN_PRESETS[trimmedName]) || Boolean(audio.presets[trimmedName]))
+  );
+  let isNameInvalid = $derived(
+    !trimmedName ||
+    trimmedName === audio.renamePresetTarget ||
+    isDuplicate
+  );
+  let buttonTitle = $derived(
+    isDuplicate ? 'This preset name is already in use' : undefined
+  );
+
   function handleModalKeydown(e: KeyboardEvent) {
-    if (e.key === 'Enter' && audio.renamePresetValue.trim()) {
+    if (e.key === 'Enter' && !isNameInvalid) {
       audio.handleRenamePreset();
     }
   }
@@ -45,7 +60,8 @@
     <Button
       variant="primary"
       onclick={() => audio.handleRenamePreset()}
-      disabled={!audio.renamePresetValue.trim() || audio.renamePresetValue.trim() === audio.renamePresetTarget}
+      disabled={isNameInvalid}
+      title={buttonTitle}
     >
       Rename
     </Button>

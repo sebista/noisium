@@ -371,7 +371,7 @@ class AudioManager {
 
   handleSavePreset() {
     const name = this.newPresetName.trim()
-    if (!name) return
+    if (!name || BUILTIN_PRESETS[name] || this.presets[name]) return
 
     const activeVolumes: Record<string, number> = {}
     Object.keys(this.soundStates).forEach((id) => {
@@ -405,13 +405,13 @@ class AudioManager {
   handleRenamePreset() {
     const oldName = this.renamePresetTarget
     const newName = this.renamePresetValue.trim()
-    if (!newName || oldName === newName) {
+    if (
+      !newName ||
+      oldName === newName ||
+      BUILTIN_PRESETS[newName] ||
+      this.presets[newName]
+    ) {
       this.isRenameDialogOpen = false
-      return
-    }
-
-    if (this.presets[newName]) {
-      alert(`A preset named "${newName}" already exists.`)
       return
     }
 
