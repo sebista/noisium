@@ -67,9 +67,8 @@
       <div
         class={cn(
           'w-10 h-10 rounded-full flex items-center justify-center shrink-0',
-          state.active
-            ? 'bg-primary text-white animate-pulse-slow'
-            : 'bg-foreground/5 text-muted'
+          state.active ? 'bg-primary text-white' : 'bg-foreground/5 text-muted',
+          state.active && audio.isPlaying && 'animate-pulse-slow'
         )}
       >
         <IconComponent class="w-5 h-5 shrink-0" />
