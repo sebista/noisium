@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { cn } from '@/lib/utils';
+
   let {
     value = $bindable(50),
     min = 0,
@@ -21,13 +23,18 @@
 <div class="relative w-full h-5 flex items-center group select-none">
   <!-- Custom track background -->
   <div
-    class="absolute left-0 right-0 h-1.5 rounded-full pointer-events-none transition-colors overflow-hidden peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2"
-    style="background-color: {disabled ? 'var(--color-slider-track-inactive)' : 'var(--color-slider-track)'};"
+    class={cn(
+      'absolute left-0 right-0 h-1.5 rounded-full pointer-events-none transition-colors overflow-hidden peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2',
+      disabled ? 'bg-slider-track-inactive' : 'bg-slider-track'
+    )}
   >
     <!-- Active colored range bar showing progress for both active and inactive -->
     <div
-      class="h-full rounded-full transition-all duration-75"
-      style="width: {percentage}%; background-color: {disabled ? 'var(--color-slider-progress-inactive)' : 'var(--color-primary)'};"
+      class={cn(
+        'h-full rounded-full transition-all duration-75',
+        disabled ? 'bg-slider-progress-inactive' : 'bg-primary'
+      )}
+      style="width: {percentage}%;"
     ></div>
   </div>
 

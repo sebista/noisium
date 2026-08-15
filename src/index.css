@@ -30,8 +30,6 @@
   --color-slider-track: var(--slider-track);
   --color-slider-track-inactive: var(--slider-track-inactive);
   --color-slider-progress-inactive: var(--slider-progress-inactive);
-  --color-thumb: var(--color-white);
-  --color-inactive-thumb: var(--muted);
   --color-hover: var(--hover-overlay);
 
   --font-sans: 'Inter', system-ui, sans-serif;

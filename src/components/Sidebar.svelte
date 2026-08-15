@@ -4,7 +4,7 @@
   import { cn } from '@/lib/utils';
 </script>
 
-<aside class="hidden lg:flex w-56 border-r border-divider bg-panel dark:bg-panel/85 flex-col p-3 shrink-0 select-none">
+<aside class="hidden lg:flex w-56 border-r border-divider bg-panel flex-col p-3 shrink-0 select-none">
   <div class="flex flex-col gap-1">
     {#each CATEGORIES as cat}
       {@const IconComponent = cat.icon}
