@@ -49,10 +49,10 @@
 
 <div
   class={cn(
-    'bg-surface border rounded-2xl p-4 flex flex-col justify-between relative group select-none transition-all',
+    'border rounded-2xl p-4 flex flex-col justify-between relative group select-none transition-all text-foreground',
     state.active
-      ? 'border-primary text-foreground'
-      : 'border-divider text-foreground hover:bg-hover'
+      ? 'bg-primary/10 border-primary'
+      : 'bg-surface border-divider hover:bg-hover'
   )}
 >
   <!-- Card Top: Toggle sound active -->
