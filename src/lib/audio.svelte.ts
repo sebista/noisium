@@ -327,6 +327,11 @@ class AudioManager {
       delete this.#audioPlayers[id]
     }
 
+    const sound = this.customSounds.find((s) => s.id === id)
+    if (sound?.url.startsWith('blob:')) {
+      URL.revokeObjectURL(sound.url)
+    }
+
     try {
       await dbDeleteCustomSound(id)
 
