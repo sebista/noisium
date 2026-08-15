@@ -30,7 +30,7 @@
   <div class="flex items-center justify-center grow z-10">
     <button
       onclick={handlePlayPause}
-      class="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer outline-none bg-primary text-white hover:bg-primary-hover border border-transparent transition-all duration-300"
+      class="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer outline-none bg-primary text-white border border-transparent"
       aria-label={audio.isPlaying ? 'Pause' : 'Play'}
     >
       {#if audio.isPlaying}
