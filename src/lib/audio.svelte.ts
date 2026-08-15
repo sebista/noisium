@@ -27,7 +27,7 @@ class AudioManager {
   isAboutDialogOpen = $state(false)
   timerSeconds = $state<number | null>(null)
   timerActive = $state(false)
-  customTimerMinutes = $state(20)
+  customTimerMinutes = $state(90)
   activeCategory = $state<CategoryId>('all')
   totalTimerDuration = $state(0)
 
