@@ -81,7 +81,7 @@
 
   {#if isOpen}
     <div
-      class="fixed top-[calc(3.625rem+env(safe-area-inset-top))] left-1/2 -translate-x-1/2 w-64 border border-divider rounded-2xl p-4 z-100 bg-surface text-foreground shadow-lg animate-in fade-in duration-150 focus:outline-none sm:absolute sm:top-auto sm:left-auto sm:right-0 sm:translate-x-0 sm:mt-2"
+      class="fixed top-[calc(3.625rem+env(safe-area-inset-top))] left-1/2 -translate-x-1/2 w-64 border border-divider rounded-2xl p-4 z-100 bg-surface text-foreground animate-in fade-in duration-150 focus:outline-none sm:absolute sm:top-auto sm:left-auto sm:right-0 sm:translate-x-0 sm:mt-2"
     >
       <span class="block text-xs font-bold mb-3 uppercase tracking-wider text-muted font-heading">
         Sleep Timer

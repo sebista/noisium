@@ -69,7 +69,7 @@
   {#if isOpen}
     <div
       class={cn(
-        'absolute mt-2 w-50 border border-divider rounded-2xl p-1.5 z-100 bg-surface text-foreground shadow-lg animate-in fade-in duration-100 focus:outline-none',
+        'absolute mt-2 w-50 border border-divider rounded-2xl p-1.5 z-100 bg-surface text-foreground animate-in fade-in duration-100 focus:outline-none',
         align === 'end' ? 'right-0' : 'left-0'
       )}
     >
