@@ -3,10 +3,12 @@
   import AddSoundButton from './button/AddSoundButton.svelte'
   import TimerButton from './button/TimerButton.svelte'
   import ColorsButton from './button/ColorsButton.svelte'
-  import ThemeButton from './button/ThemeButton.svelte'
-  import AboutButton from './button/AboutButton.svelte'
   import Logo from './Logo.svelte'
   import WindowControls from './tauri/WindowControls.svelte'
+  import Button from './ui/Button.svelte'
+  import { theme } from '@/lib/theme.svelte'
+  import { audio } from '@/lib/audio.svelte'
+  import { Sun, Moon, Info } from 'lucide-svelte'
 </script>
 
 <header class="h-[calc(4rem+env(safe-area-inset-top))] pt-[env(safe-area-inset-top)] pl-[calc(1rem+env(safe-area-inset-left))] pr-[calc(1rem+env(safe-area-inset-right))] sm:pl-[calc(1.5rem+env(safe-area-inset-left))] sm:pr-[calc(1.5rem+env(safe-area-inset-right))] flex items-center justify-between border-b border-divider bg-panel shrink-0 select-none app-drag">
@@ -34,8 +36,26 @@
   <div class="flex items-center gap-2 lg:gap-3 z-10">
     <TimerButton />
     <ColorsButton />
-    <ThemeButton />
-    <AboutButton />
+    <Button
+      variant="icon"
+      onclick={() => theme.toggleTheme()}
+      aria-label="Toggle theme"
+      title="Toggle theme"
+    >
+      {#if theme.darkMode}
+        <Sun class="w-4.5 h-4.5" />
+      {:else}
+        <Moon class="w-4.5 h-4.5" />
+      {/if}
+    </Button>
+    <Button
+      variant="icon"
+      onclick={() => (audio.isAboutDialogOpen = true)}
+      aria-label="About Noisium"
+      title="About"
+    >
+      <Info class="w-4.5 h-4.5" />
+    </Button>
     <WindowControls />
   </div>
 </header>

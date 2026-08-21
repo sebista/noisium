@@ -2,8 +2,8 @@
   import { audio } from '@/lib/audio.svelte';
   import { cn } from '@/lib/utils';
   import type { SoundDefinition } from '@/types';
-  import DeleteButton from '../button/DeleteButton.svelte';
   import Slider from './Slider.svelte';
+  import Button from './Button.svelte';
   
   import {
     Music,
@@ -20,7 +20,8 @@
     Coffee,
     Flame,
     Sparkles,
-    Activity
+    Activity,
+    Trash2
   } from 'lucide-svelte';
 
   const IconMap: Record<string, any> = {
@@ -117,10 +118,14 @@
 
     <!-- Custom Sound trash bin -->
     {#if sound.category === 'custom'}
-      <DeleteButton
+      <Button
+        variant="ghost"
         onclick={() => audio.handleDeleteCustomSound(sound.id)}
         title="Delete custom sound"
-      />
+        aria-label="Delete custom sound"
+      >
+        <Trash2 class="w-3.5 h-3.5" />
+      </Button>
     {/if}
   </div>
 </div>

@@ -9,14 +9,14 @@
     Coffee,
     Waves,
     Moon,
-    Sparkles
+    Sparkles,
+    Pencil,
+    RefreshCw,
+    Trash2
   } from 'lucide-svelte';
   import { audio } from '@/lib/audio.svelte';
   import { BUILTIN_PRESETS } from '@/lib/presets';
   import { cn } from '@/lib/utils';
-  import DeleteButton from './DeleteButton.svelte';
-  import RenameButton from './RenameButton.svelte';
-  import OverwriteButton from './OverwriteButton.svelte';
   import Button from '../ui/Button.svelte';
   import Popover from '../ui/Popover.svelte';
 
@@ -95,19 +95,43 @@
             <Bookmark class="w-3.5 h-3.5 text-muted shrink-0" />
             <span class="truncate">{name}</span>
           </div>
-          <div class="flex items-center gap-1 shrink-0">
-            <RenameButton
-              onclick={(e) => { audio.handleOpenRenameDialog(name, e); close(); }}
+          <div class="flex items-center gap-0.5 shrink-0">
+            <Button
+              variant="ghost"
+              onclick={(e: MouseEvent) => {
+                e.stopPropagation();
+                audio.handleOpenRenameDialog(name, e);
+                close();
+              }}
               title="Rename preset"
-            />
-            <OverwriteButton
-              onclick={(e) => { audio.handleOpenOverwriteDialog(name, e); close(); }}
+              aria-label="Rename preset"
+            >
+              <Pencil class="w-3.5 h-3.5" />
+            </Button>
+            <Button
+              variant="ghost"
+              onclick={(e: MouseEvent) => {
+                e.stopPropagation();
+                audio.handleOpenOverwriteDialog(name, e);
+                close();
+              }}
               title="Update preset sounds"
-            />
-            <DeleteButton
-              onclick={(e) => { audio.handleOpenDeleteDialog(name, e); close(); }}
+              aria-label="Update preset sounds"
+            >
+              <RefreshCw class="w-3.5 h-3.5" />
+            </Button>
+            <Button
+              variant="ghost"
+              onclick={(e: MouseEvent) => {
+                e.stopPropagation();
+                audio.handleOpenDeleteDialog(name, e);
+                close();
+              }}
               title="Delete preset"
-            />
+              aria-label="Delete preset"
+            >
+              <Trash2 class="w-3.5 h-3.5" />
+            </Button>
           </div>
         </div>
       {/each}
