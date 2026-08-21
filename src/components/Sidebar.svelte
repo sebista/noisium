@@ -30,7 +30,7 @@
         {#if soundCount > 0}
           <span
             class={cn(
-              'text-[9px] font-bold px-2 py-0.5 rounded-full',
+              'text-[10px] font-bold px-2 py-0.5 rounded-full',
               isActive ? 'bg-white text-primary' : 'bg-primary text-white'
             )}
           >

@@ -1,5 +1,16 @@
 <script lang="ts">
-  import { ChevronDown, Plus } from 'lucide-svelte';
+  import {
+    ChevronDown,
+    Plus,
+    Bookmark,
+    CloudRain,
+    Flame,
+    CloudLightning,
+    Coffee,
+    Waves,
+    Moon,
+    Sparkles
+  } from 'lucide-svelte';
   import { audio } from '@/lib/audio.svelte';
   import { BUILTIN_PRESETS } from '@/lib/presets';
   import { cn } from '@/lib/utils';
@@ -8,6 +19,15 @@
   import OverwriteButton from './OverwriteButton.svelte';
   import Button from '../ui/Button.svelte';
   import Popover from '../ui/Popover.svelte';
+
+  const PRESET_ICONS: Record<string, any> = {
+    'Gentle Rain': CloudRain,
+    'Cozy Fireplace': Flame,
+    Thunderstorm: CloudLightning,
+    'Coffee Shop Focus': Coffee,
+    'Ocean Breeze': Waves,
+    'Sleep Noise': Moon,
+  };
 
   let {
     align = 'start',
@@ -27,7 +47,7 @@
   );
 </script>
 
-<Popover bind:open={isOpen} {align} class="w-52 p-1.5">
+<Popover bind:open={isOpen} {align} class="w-56 p-1.5">
   {#snippet trigger({ open, toggle })}
     <Button
       variant="secondary"
@@ -44,32 +64,37 @@
   {/snippet}
 
   {#snippet children({ close })}
-    <span class="block px-2.5 py-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted">
+    <span class="block px-2.5 pt-2.5 pb-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
       Built-in Presets
     </span>
     {#each builtinPresetNames as name}
+      {@const IconComponent = PRESET_ICONS[name] || Sparkles}
       <button
         onclick={() => { audio.handleLoadPreset(name); close(); }}
-        class="w-full flex items-center justify-between px-2.5 h-8 rounded-2xl outline-none cursor-pointer text-left text-xs hover:bg-hover text-foreground transition-colors"
+        class="w-full flex items-center gap-2.5 px-2.5 min-h-[34px] py-1 rounded-2xl outline-none cursor-pointer text-left text-xs font-medium hover:bg-hover text-foreground transition-colors"
       >
-        <span>{name}</span>
+        <IconComponent class="w-3.5 h-3.5 text-muted shrink-0" />
+        <span class="truncate">{name}</span>
       </button>
     {/each}
 
     {#if hasCustomPresets}
       <div class="h-px my-1 bg-divider"></div>
-      <span class="block px-2.5 py-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted">
+      <span class="block px-2.5 pt-2 pb-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
         My Presets
       </span>
       {#each Object.keys(audio.presets).filter((k) => !builtinPresetNames.includes(k)) as name}
         <div
-          class="flex items-center justify-between px-2.5 h-8 rounded-2xl text-xs group hover:bg-hover cursor-pointer text-foreground transition-colors"
+          class="flex items-center justify-between px-2.5 min-h-[34px] py-1 rounded-2xl text-xs font-medium group hover:bg-hover cursor-pointer text-foreground transition-colors"
           onclick={() => { audio.handleLoadPreset(name); close(); }}
           role="button"
           tabindex="0"
           onkeydown={(e) => e.key === 'Enter' && audio.handleLoadPreset(name)}
         >
-          <span class="truncate pr-2">{name}</span>
+          <div class="flex items-center gap-2.5 min-w-0 pr-2">
+            <Bookmark class="w-3.5 h-3.5 text-muted shrink-0" />
+            <span class="truncate">{name}</span>
+          </div>
           <div class="flex items-center gap-1 shrink-0">
             <RenameButton
               onclick={(e) => { audio.handleOpenRenameDialog(name, e); close(); }}
@@ -91,7 +116,7 @@
     <div class="h-px my-1 bg-divider"></div>
     <button
       onclick={() => { audio.isPresetDialogOpen = true; close(); }}
-      class="w-full flex items-center gap-2 px-2.5 h-8 rounded-2xl hover:bg-primary/20 text-primary font-semibold outline-none cursor-pointer text-left text-xs transition-colors"
+      class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl hover:bg-primary/20 text-primary font-semibold outline-none cursor-pointer text-left text-xs transition-colors"
     >
       <Plus class="w-4 h-4" />
       <span>Save current mix...</span>

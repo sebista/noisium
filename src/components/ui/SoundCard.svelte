@@ -77,7 +77,7 @@
         <span class="font-semibold text-xs leading-tight tracking-wide">
           {sound.name}
         </span>
-        <span class="text-[10px] text-muted capitalize">
+        <span class="text-xs text-muted capitalize">
           {sound.category}
         </span>
       </div>
@@ -101,7 +101,7 @@
 
   <!-- Card Bottom: Volume Slider & Delete (for custom) -->
   <div class="flex items-center gap-2.5 mt-1">
-    <span class="text-[10px] font-semibold w-4 text-center shrink-0">
+    <span class="text-xs font-semibold w-4 text-center shrink-0">
       {state.volume}
     </span>
     <div class="grow">

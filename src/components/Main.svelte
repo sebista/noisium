@@ -43,20 +43,20 @@
       }).length}
 
       <button
-        onclick={() => audio.activeCategory = cat.id}
+        onclick={() => (audio.activeCategory = cat.id)}
         class={cn(
-          'flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer border select-none shrink-0',
+          'flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer border select-none shrink-0 min-h-[36px]',
           isActive
             ? 'bg-primary text-white border-primary'
             : 'bg-surface hover:bg-hover border-divider text-foreground'
         )}
       >
-        <IconComponent class="w-3.5 h-3.5 shrink-0" />
+        <IconComponent class="w-4 h-4 shrink-0" />
         <span>{cat.label}</span>
         {#if soundCount > 0}
           <span
             class={cn(
-              'text-[8px] font-bold px-1.5 py-0.5 rounded-full',
+              'text-[10px] font-bold px-1.5 py-0.5 rounded-full',
               isActive ? 'bg-white text-primary' : 'bg-primary text-white'
             )}
           >
