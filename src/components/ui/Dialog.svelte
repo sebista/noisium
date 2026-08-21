@@ -45,7 +45,7 @@
   bind:this={dialogEl}
   onclick={handleBackdropClick}
   onclose={handleCancel}
-  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-sm border border-divider p-6 rounded-2xl z-201 bg-surface text-foreground backdrop:bg-black/60 backdrop:backdrop-blur-sm focus:outline-none"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-sm border border-divider p-6 rounded-2xl z-201 bg-surface text-foreground backdrop:bg-black/20 backdrop:backdrop-blur-sm focus:outline-none"
 >
   {#if children}
     {@render children()}
