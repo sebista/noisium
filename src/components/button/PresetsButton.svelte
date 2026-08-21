@@ -110,12 +110,13 @@
             </Button>
             <Button
               variant="ghost"
+              disabled={!audio.hasActiveSounds}
               onclick={(e: MouseEvent) => {
                 e.stopPropagation();
                 audio.handleOpenOverwriteDialog(name, e);
                 close();
               }}
-              title="Update preset sounds"
+              title={!audio.hasActiveSounds ? 'No sounds are currently active' : 'Update preset sounds'}
               aria-label="Update preset sounds"
             >
               <RefreshCw class="w-3.5 h-3.5" />
@@ -139,8 +140,10 @@
 
     <div class="border-t border-divider my-1"></div>
     <button
+      disabled={!audio.hasActiveSounds}
       onclick={() => { audio.isPresetDialogOpen = true; close(); }}
-      class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl hover:bg-primary/20 text-primary font-semibold outline-none cursor-pointer text-left text-xs transition-colors"
+      class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl font-semibold outline-none text-left text-xs transition-colors cursor-pointer text-primary hover:bg-primary/20 disabled:text-muted disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+      title={!audio.hasActiveSounds ? 'No sounds are currently active' : undefined}
     >
       <Plus class="w-4 h-4" />
       <span>Save current mix...</span>

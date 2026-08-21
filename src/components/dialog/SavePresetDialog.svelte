@@ -12,9 +12,13 @@
   let isDuplicate = $derived(
     Boolean(BUILTIN_PRESETS[trimmedName]) || Boolean(audio.presets[trimmedName])
   );
-  let isNameInvalid = $derived(!trimmedName || isDuplicate);
+  let isNameInvalid = $derived(!trimmedName || isDuplicate || !audio.hasActiveSounds);
   let buttonTitle = $derived(
-    isDuplicate ? 'This preset name is already in use' : undefined
+    isDuplicate
+      ? 'This preset name is already in use'
+      : !audio.hasActiveSounds
+        ? 'No sounds are currently active'
+        : undefined
   );
 
   function handleModalKeydown(e: KeyboardEvent) {

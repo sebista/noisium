@@ -27,6 +27,8 @@
     <Button
       variant="primary"
       onclick={() => audio.handleOverwritePreset()}
+      disabled={!audio.hasActiveSounds}
+      title={!audio.hasActiveSounds ? 'No sounds are currently active' : undefined}
     >
       Proceed
     </Button>

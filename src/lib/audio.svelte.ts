@@ -90,6 +90,10 @@ class AudioManager {
     return [...defaultSounds, ...this.customSounds]
   }
 
+  get hasActiveSounds(): boolean {
+    return Object.values(this.soundStates).some((s) => s.active)
+  }
+
   get activeSoundsText(): string {
     return this.allSounds
       .filter((s) => this.soundStates[s.id]?.active)
@@ -371,7 +375,7 @@ class AudioManager {
 
   handleSavePreset() {
     const name = this.newPresetName.trim()
-    if (!name || BUILTIN_PRESETS[name] || this.presets[name]) return
+    if (!name || BUILTIN_PRESETS[name] || this.presets[name] || !this.hasActiveSounds) return
 
     const activeVolumes: Record<string, number> = {}
     Object.keys(this.soundStates).forEach((id) => {
@@ -381,7 +385,6 @@ class AudioManager {
     })
 
     if (Object.keys(activeVolumes).length === 0) {
-      alert('Cannot save empty preset! Play some sounds first.')
       return
     }
 
@@ -433,7 +436,7 @@ class AudioManager {
 
   handleOverwritePreset() {
     const name = this.overwritePresetTarget
-    if (!name) return
+    if (!name || !this.hasActiveSounds) return
 
     const activeVolumes: Record<string, number> = {}
     Object.keys(this.soundStates).forEach((id) => {
@@ -443,7 +446,6 @@ class AudioManager {
     })
 
     if (Object.keys(activeVolumes).length === 0) {
-      alert('Cannot save empty preset! Play some sounds first.')
       return
     }
 
