@@ -16,7 +16,7 @@
   );
 </script>
 
-<Popover bind:open={isOpen} align="end" class="w-64 p-4">
+<Popover bind:open={isOpen} align="end" class="w-64 px-4">
   {#snippet trigger({ open, toggle })}
     <Button
       variant="icon"
@@ -58,7 +58,7 @@
   {/snippet}
 
   {#snippet children({ close })}
-    <span class="block text-xs font-bold mb-3 uppercase tracking-wider text-muted font-heading">
+    <span class="block text-xs font-bold mb-2.5 uppercase tracking-wider text-muted font-heading">
       Sleep Timer
     </span>
 
@@ -67,7 +67,7 @@
         <div class="text-3xl font-mono font-bold mb-2 text-foreground">
           {audio.formatTimerTime(audio.timerSeconds)}
         </div>
-        <span class="text-xs block mb-4 text-muted">
+        <span class="text-xs block mb-3 text-muted">
           Remaining until pause
         </span>
         <Button
@@ -79,7 +79,7 @@
         </Button>
       </div>
     {:else}
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col gap-2.5">
         <div class="grid grid-cols-3 gap-1.5">
           {#each [5, 15, 30, 45, 60, 120] as mins}
             <Button
@@ -91,7 +91,7 @@
           {/each}
         </div>
 
-        <div class="h-px my-1 bg-divider"></div>
+        <div class="h-px my-1.5 bg-divider"></div>
 
         <span class="text-xs font-semibold text-muted">
           Custom ({audio.customTimerMinutes} mins)

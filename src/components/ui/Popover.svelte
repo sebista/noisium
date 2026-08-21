@@ -77,7 +77,7 @@
     <div
       class={cn(
         'fixed top-[calc(4rem+env(safe-area-inset-top)+0.5rem)] left-1/2 -translate-x-1/2 z-100',
-        'border border-divider rounded-2xl bg-surface text-foreground',
+        'border border-divider rounded-2xl bg-surface text-foreground py-3',
         'animate-in fade-in zoom-in-95 duration-150 focus:outline-none',
         'sm:absolute sm:top-auto sm:left-auto sm:translate-x-0 sm:mt-2',
         align === 'start' && 'sm:left-0 sm:right-auto',

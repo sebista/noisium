@@ -47,7 +47,7 @@
   );
 </script>
 
-<Popover bind:open={isOpen} {align} class="w-56 p-1.5">
+<Popover bind:open={isOpen} {align} class="w-56 px-1.5">
   {#snippet trigger({ open, toggle })}
     <Button
       variant="secondary"
@@ -64,7 +64,7 @@
   {/snippet}
 
   {#snippet children({ close })}
-    <span class="block px-2.5 pt-2.5 pb-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
+    <span class="block px-2 pb-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
       Built-in Presets
     </span>
     {#each builtinPresetNames as name}
@@ -80,7 +80,7 @@
 
     {#if hasCustomPresets}
       <div class="h-px my-1 bg-divider"></div>
-      <span class="block px-2.5 pt-2 pb-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
+      <span class="block px-2 py-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
         My Presets
       </span>
       {#each Object.keys(audio.presets).filter((k) => !builtinPresetNames.includes(k)) as name}

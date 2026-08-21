@@ -16,7 +16,7 @@
   let isOpen = $state(false);
 </script>
 
-<Popover bind:open={isOpen} align="end" class="w-64 p-4">
+<Popover bind:open={isOpen} align="end" class="w-64 px-4">
   {#snippet trigger({ open, toggle })}
     <Button
       variant="icon"
@@ -31,11 +31,11 @@
   {/snippet}
 
   {#snippet children()}
-    <span class="block text-xs font-bold mb-3 uppercase tracking-wider text-muted font-heading">
+    <span class="block text-xs font-bold mb-2.5 uppercase tracking-wider text-muted font-heading">
       Primary Color
     </span>
 
-    <div class="grid grid-cols-6 gap-2 mb-4">
+    <div class="grid grid-cols-6 gap-2 mb-3">
       {#each PRESETS as preset}
         {@const isActive = theme.primaryColor.toLowerCase() === preset.value.toLowerCase()}
         <button
@@ -51,7 +51,7 @@
       {/each}
     </div>
 
-    <div class="h-px my-3 bg-divider"></div>
+    <div class="h-px my-2.5 bg-divider"></div>
 
     <div class="flex items-center justify-between gap-3">
       <span class="text-xs font-semibold text-muted">
