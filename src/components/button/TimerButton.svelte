@@ -91,7 +91,7 @@
           {/each}
         </div>
 
-        <div class="h-px my-1.5 bg-divider"></div>
+        <div class="border-t border-divider my-1.5"></div>
 
         <span class="text-xs font-semibold text-muted">
           Custom ({audio.customTimerMinutes} mins)

@@ -51,7 +51,7 @@
       {/each}
     </div>
 
-    <div class="h-px my-2.5 bg-divider"></div>
+    <div class="border-t border-divider my-2.5"></div>
 
     <div class="flex items-center justify-between gap-3">
       <span class="text-xs font-semibold text-muted">

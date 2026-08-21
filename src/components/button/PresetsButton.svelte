@@ -79,7 +79,7 @@
     {/each}
 
     {#if hasCustomPresets}
-      <div class="h-px my-1 bg-divider"></div>
+      <div class="border-t border-divider my-1"></div>
       <span class="block px-2 py-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
         My Presets
       </span>
@@ -137,7 +137,7 @@
       {/each}
     {/if}
 
-    <div class="h-px my-1 bg-divider"></div>
+    <div class="border-t border-divider my-1"></div>
     <button
       onclick={() => { audio.isPresetDialogOpen = true; close(); }}
       class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl hover:bg-primary/20 text-primary font-semibold outline-none cursor-pointer text-left text-xs transition-colors"
