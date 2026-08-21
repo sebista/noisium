@@ -20,17 +20,17 @@
   --color-primary: var(--primary-color);
   --color-primary-hover: color-mix(in oklab, var(--primary-color) 85%, black);
 
-  --color-background: var(--window);
-  --color-surface: var(--card);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-panel: var(--panel);
-  --color-divider: var(--border);
-  --color-foreground: var(--text);
+  --color-divider: var(--divider);
+  --color-foreground: var(--foreground);
   --color-muted: var(--muted);
 
   --color-slider-track: var(--slider-track);
   --color-slider-track-inactive: var(--slider-track-inactive);
   --color-slider-progress-inactive: var(--slider-progress-inactive);
-  --color-hover: var(--hover-overlay);
+  --color-hover: var(--hover);
 
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-heading: 'Outfit', system-ui, sans-serif;
@@ -41,29 +41,29 @@
 :root {
   --primary-color: #3584e4; /* Gnome primary blue */
 
-  --window: #fcfcfc;
-  --card: #ffffff;
+  --background: #fcfcfc;
+  --surface: #ffffff;
   --panel: #ffffff;
-  --border: #d6d6d6;
-  --text: #2e3436;
+  --divider: #d6d6d6;
+  --foreground: #2e3436;
   --muted: #777777;
   --slider-track: rgba(0, 0, 0, 0.08);
   --slider-track-inactive: rgba(0, 0, 0, 0.08);
   --slider-progress-inactive: rgba(0, 0, 0, 0.08);
-  --hover-overlay: #f7f7f5;
+  --hover: #f7f7f5;
 }
 
 .dark {
-  --window: #242424;
-  --card: #2d2d2d;
+  --background: #242424;
+  --surface: #2d2d2d;
   --panel: #1d1d1d;
-  --border: #3f3f3f;
-  --text: #eeeeec;
+  --divider: #3f3f3f;
+  --foreground: #eeeeec;
   --muted: #a0a0a0;
   --slider-track: rgba(255, 255, 255, 0.1);
   --slider-track-inactive: rgba(255, 255, 255, 0.06);
   --slider-progress-inactive: rgba(255, 255, 255, 0.2);
-  --hover-overlay: #373737;
+  --hover: #373737;
 }
 
 @keyframes pulse-gentle {
@@ -116,7 +116,7 @@ body {
   overflow: hidden;
   user-select: none;
   background-color: var(--panel);
-  color: var(--text);
+  color: var(--foreground);
   touch-action: manipulation;
 }
 
