@@ -21,12 +21,12 @@
   } = $props();
 
   const buttonClasses = $derived(cn(
-    'transition-all cursor-pointer font-semibold outline-none text-xs flex items-center justify-center select-none shrink-0',
+    'cursor-pointer font-semibold outline-none text-xs flex items-center justify-center select-none shrink-0 transition-colors duration-150',
     // Variants
     variant === 'primary' && 'px-4 py-1.5 bg-primary hover:bg-primary-hover text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed',
     variant === 'secondary' && 'px-3.5 py-1.5 border border-divider bg-surface hover:bg-hover text-foreground rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed',
     variant === 'icon' && 'w-9 h-9 rounded-full border border-divider bg-surface hover:bg-hover text-foreground disabled:opacity-50 disabled:cursor-not-allowed',
-    variant === 'ghost' && 'p-1 rounded-2xl text-muted hover:text-primary hover:bg-primary/10 transition-all',
+    variant === 'ghost' && 'p-1 rounded-2xl text-muted hover:text-primary hover:bg-primary/10',
     className
   ));
 </script>

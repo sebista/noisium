@@ -50,7 +50,7 @@
 
 <div
   class={cn(
-    'border rounded-2xl p-4 flex flex-col justify-between relative group select-none transition-all text-foreground',
+    'border rounded-2xl p-4 flex flex-col justify-between relative group select-none transition-colors duration-150 text-foreground',
     state.active
       ? 'bg-primary/10 border-primary'
       : 'bg-surface border-divider hover:bg-hover'

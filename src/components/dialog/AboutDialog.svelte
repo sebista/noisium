@@ -11,7 +11,7 @@
       href="https://github.com/sebilune/noisium"
       target="_blank"
       rel="noopener noreferrer"
-      class="transition-colors cursor-pointer text-muted hover:text-foreground flex items-center"
+      class="transition-colors duration-150 cursor-pointer text-muted hover:text-foreground flex items-center"
       aria-label="GitHub Repository"
     >
       <svg
