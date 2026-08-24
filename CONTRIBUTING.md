@@ -46,7 +46,4 @@ import { cn } from '@/lib/utils'
 
 ### Commits
 
-We use semantic commit conventions for all changes:
-
-- Semantic title in lowercase (e.g., `feat: ...`, `fix: ...`, `refactor: ...`, `perf: ...`)
-- Bulleted body where each bullet point has the first letter capitalized and no trailing period.
+We use semantic commit titles for all changes (e.g., `feat: ...`, `fix: ...`, `refactor: ...`, `perf: ...`).
