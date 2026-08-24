@@ -5,21 +5,15 @@
   import { getCurrentWindow } from '@tauri-apps/api/window';
 
   function minimize() {
-    if (isTauri()) {
-      getCurrentWindow().minimize();
-    }
+    getCurrentWindow().minimize();
   }
 
   function toggleMaximize() {
-    if (isTauri()) {
-      getCurrentWindow().toggleMaximize();
-    }
+    getCurrentWindow().toggleMaximize();
   }
 
   function close() {
-    if (isTauri()) {
-      getCurrentWindow().close();
-    }
+    getCurrentWindow().close();
   }
 </script>
 
@@ -31,6 +25,7 @@
       variant="icon"
       onclick={minimize}
       title="Minimize"
+      aria-label="Minimize"
     >
       <Minus class="w-3.5 h-3.5" strokeWidth={2.5} />
     </Button>
@@ -39,6 +34,7 @@
       variant="icon"
       onclick={toggleMaximize}
       title="Maximize"
+      aria-label="Maximize"
     >
       <Square class="w-3 h-3" strokeWidth={2.5} />
     </Button>
@@ -47,9 +43,11 @@
       variant="icon"
       onclick={close}
       title="Close"
+      aria-label="Close"
       class="hover:bg-primary/20 hover:text-primary hover:border-primary/30"
     >
       <X class="w-3.5 h-3.5" strokeWidth={2.5} />
     </Button>
   </div>
 {/if}
+
