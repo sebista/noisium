@@ -9,24 +9,49 @@ export interface CustomSoundData {
   type: string
 }
 
-function openDB(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, DB_VERSION)
+let dbPromise: Promise<IDBDatabase> | null = null
 
-    request.onerror = () => reject(request.error)
-    request.onsuccess = () => resolve(request.result)
-
-    request.onupgradeneeded = () => {
-      const db = request.result
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME, { keyPath: 'id' })
+function getDB(): Promise<IDBDatabase> {
+  if (!dbPromise) {
+    dbPromise = new Promise((resolve, reject) => {
+      if (typeof indexedDB === 'undefined') {
+        reject(new Error('IndexedDB is not supported in this environment'))
+        return
       }
-    }
-  })
+
+      const request = indexedDB.open(DB_NAME, DB_VERSION)
+
+      request.onerror = () => {
+        dbPromise = null
+        reject(request.error)
+      }
+
+      request.onsuccess = () => {
+        const db = request.result
+        db.onclose = () => {
+          dbPromise = null
+        }
+        db.onversionchange = () => {
+          db.close()
+          dbPromise = null
+        }
+        resolve(db)
+      }
+
+      request.onupgradeneeded = () => {
+        const db = request.result
+        if (!db.objectStoreNames.contains(STORE_NAME)) {
+          db.createObjectStore(STORE_NAME, { keyPath: 'id' })
+        }
+      }
+    })
+  }
+
+  return dbPromise
 }
 
 export async function saveCustomSound(sound: CustomSoundData): Promise<void> {
-  const db = await openDB()
+  const db = await getDB()
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE_NAME, 'readwrite')
     const store = transaction.objectStore(STORE_NAME)
@@ -34,11 +59,14 @@ export async function saveCustomSound(sound: CustomSoundData): Promise<void> {
 
     request.onsuccess = () => resolve()
     request.onerror = () => reject(request.error)
+    transaction.onerror = () => reject(transaction.error)
+    transaction.onabort = () =>
+      reject(transaction.error || new Error('Transaction aborted'))
   })
 }
 
 export async function getAllCustomSounds(): Promise<CustomSoundData[]> {
-  const db = await openDB()
+  const db = await getDB()
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE_NAME, 'readonly')
     const store = transaction.objectStore(STORE_NAME)
@@ -46,11 +74,14 @@ export async function getAllCustomSounds(): Promise<CustomSoundData[]> {
 
     request.onsuccess = () => resolve(request.result || [])
     request.onerror = () => reject(request.error)
+    transaction.onerror = () => reject(transaction.error)
+    transaction.onabort = () =>
+      reject(transaction.error || new Error('Transaction aborted'))
   })
 }
 
 export async function deleteCustomSound(id: string): Promise<void> {
-  const db = await openDB()
+  const db = await getDB()
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE_NAME, 'readwrite')
     const store = transaction.objectStore(STORE_NAME)
@@ -58,5 +89,8 @@ export async function deleteCustomSound(id: string): Promise<void> {
 
     request.onsuccess = () => resolve()
     request.onerror = () => reject(request.error)
+    transaction.onerror = () => reject(transaction.error)
+    transaction.onabort = () =>
+      reject(transaction.error || new Error('Transaction aborted'))
   })
 }
