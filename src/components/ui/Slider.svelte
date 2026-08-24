@@ -21,6 +21,21 @@
 </script>
 
 <div class="relative w-full h-5 flex items-center group select-none">
+  <!-- Transparent native input overlay to handle touch/click/drag/keyboard events natively -->
+  <input
+    type="range"
+    {min}
+    {max}
+    {step}
+    {disabled}
+    bind:value
+    oninput={(e) => {
+      const val = Number((e.target as HTMLInputElement).value);
+      if (oninput) oninput(val);
+    }}
+    class="peer absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-default z-10"
+  />
+
   <!-- Custom track background -->
   <div
     class={cn(
@@ -37,19 +52,4 @@
       style="width: {percentage}%;"
     ></div>
   </div>
-
-  <!-- Transparent native input overlay to handle touch/click/drag/keyboard events natively -->
-  <input
-    type="range"
-    {min}
-    {max}
-    {step}
-    {disabled}
-    bind:value
-    oninput={(e) => {
-      const val = Number((e.target as HTMLInputElement).value);
-      if (oninput) oninput(val);
-    }}
-    class="peer absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-default"
-  />
 </div>
