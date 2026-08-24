@@ -23,11 +23,7 @@
 
   // Reactively sync DOM dark class when theme state changes
   $effect(() => {
-    if (theme.darkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    document.documentElement.classList.toggle('dark', theme.darkMode)
   })
 
   // Reactively sync DOM primary-color variable when theme state changes
