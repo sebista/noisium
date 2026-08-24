@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { audio } from '@/lib/audio.svelte';
+  import { dialogs } from '@/lib/dialogs.svelte';
   import Logo from '../Logo.svelte';
   import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
 </script>
 
-<Dialog bind:open={audio.isAboutDialogOpen}>
+<Dialog bind:open={dialogs.isAboutOpen}>
   <h2 class="text-lg font-bold mb-2 flex items-center gap-2 text-foreground font-heading">
     <a
       href="https://github.com/sebilune/noisium"
@@ -49,7 +49,7 @@
       <span>Support me on Ko-fi</span>
     </Button>
 
-    <Button variant="primary" onclick={() => audio.isAboutDialogOpen = false} autofocus>
+    <Button variant="primary" onclick={() => dialogs.closeAbout()} autofocus>
       Close
     </Button>
   </div>

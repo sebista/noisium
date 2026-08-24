@@ -16,16 +16,6 @@ class AudioManager {
   soundStates = $state<Record<string, SoundState>>({})
   customSounds = $state<SoundDefinition[]>([])
   presets = $state<Record<string, Record<string, number>>>({})
-  newPresetName = $state('')
-  isPresetDialogOpen = $state(false)
-  isRenameDialogOpen = $state(false)
-  renamePresetTarget = $state('')
-  renamePresetValue = $state('')
-  isOverwriteDialogOpen = $state(false)
-  overwritePresetTarget = $state('')
-  isDeleteDialogOpen = $state(false)
-  deletePresetTarget = $state('')
-  isAboutDialogOpen = $state(false)
   timerSeconds = $state<number | null>(null)
   timerActive = $state(false)
   customTimerMinutes = $state(90)
@@ -418,8 +408,8 @@ class AudioManager {
     localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
   }
 
-  // Preset handlers
-  handleLoadPreset(name: string) {
+  // Preset methods
+  loadPreset(name: string) {
     const presetVolumes = this.presets[name]
     if (!presetVolumes) return
 
@@ -438,9 +428,9 @@ class AudioManager {
     this.isPlaying = true
   }
 
-  handleSavePreset() {
-    const name = this.newPresetName.trim()
-    if (!name || this.presets[name] || !this.hasActiveSounds) return
+  savePreset(name: string): boolean {
+    const trimmed = name.trim()
+    if (!trimmed || this.presets[trimmed] || !this.hasActiveSounds) return false
 
     const activeVolumes: Record<string, number> = {}
     Object.keys(this.soundStates).forEach((id) => {
@@ -450,51 +440,33 @@ class AudioManager {
     })
 
     if (Object.keys(activeVolumes).length === 0) {
-      return
+      return false
     }
 
-    this.presets[name] = activeVolumes
+    this.presets[trimmed] = activeVolumes
     this.#saveCustomPresets()
-
-    this.newPresetName = ''
-    this.isPresetDialogOpen = false
+    return true
   }
 
-  handleOpenRenameDialog(name: string, e: MouseEvent) {
-    e.stopPropagation()
-    this.renamePresetTarget = name
-    this.renamePresetValue = name
-    this.isRenameDialogOpen = true
-  }
-
-  handleRenamePreset() {
-    const oldName = this.renamePresetTarget
-    const newName = this.renamePresetValue.trim()
+  renamePreset(oldName: string, newName: string): boolean {
+    const trimmed = newName.trim()
     if (
-      !newName ||
-      oldName === newName ||
-      this.presets[newName]
+      !trimmed ||
+      oldName === trimmed ||
+      this.presets[trimmed] ||
+      !this.presets[oldName]
     ) {
-      this.isRenameDialogOpen = false
-      return
+      return false
     }
 
-    this.presets[newName] = this.presets[oldName]
+    this.presets[trimmed] = this.presets[oldName]
     delete this.presets[oldName]
     this.#saveCustomPresets()
-
-    this.isRenameDialogOpen = false
+    return true
   }
 
-  handleOpenOverwriteDialog(name: string, e: MouseEvent) {
-    e.stopPropagation()
-    this.overwritePresetTarget = name
-    this.isOverwriteDialogOpen = true
-  }
-
-  handleOverwritePreset() {
-    const name = this.overwritePresetTarget
-    if (!name || !this.hasActiveSounds) return
+  overwritePreset(name: string): boolean {
+    if (!name || !this.hasActiveSounds || !this.presets[name]) return false
 
     const activeVolumes: Record<string, number> = {}
     Object.keys(this.soundStates).forEach((id) => {
@@ -504,30 +476,20 @@ class AudioManager {
     })
 
     if (Object.keys(activeVolumes).length === 0) {
-      return
+      return false
     }
 
     this.presets[name] = activeVolumes
     this.#saveCustomPresets()
-
-    this.isOverwriteDialogOpen = false
+    return true
   }
 
-  handleOpenDeleteDialog(name: string, e: MouseEvent) {
-    e.stopPropagation()
-    this.deletePresetTarget = name
-    this.isDeleteDialogOpen = true
-  }
-
-  handleDeletePreset() {
-    const name = this.deletePresetTarget
-    if (!name) return
+  deletePreset(name: string): boolean {
+    if (!name || !this.presets[name]) return false
 
     delete this.presets[name]
     this.#saveCustomPresets()
-
-    this.isDeleteDialogOpen = false
-    this.deletePresetTarget = ''
+    return true
   }
 }
 

@@ -7,7 +7,7 @@
   import WindowControls from './tauri/WindowControls.svelte'
   import Button from './ui/Button.svelte'
   import { theme } from '@/lib/theme.svelte'
-  import { audio } from '@/lib/audio.svelte'
+  import { dialogs } from '@/lib/dialogs.svelte'
   import { Sun, Moon, Info } from 'lucide-svelte'
 </script>
 
@@ -50,7 +50,7 @@
     </Button>
     <Button
       variant="icon"
-      onclick={() => (audio.isAboutDialogOpen = true)}
+      onclick={() => dialogs.openAbout()}
       aria-label="About Noisium"
       title="About"
     >

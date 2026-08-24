@@ -1,20 +1,29 @@
 <script lang="ts">
   import { audio } from '@/lib/audio.svelte';
+  import { dialogs } from '@/lib/dialogs.svelte';
   import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
 
-  function handleModalCancel() {
-    audio.isRenameDialogOpen = false;
+  function handleCancel() {
+    dialogs.closeRenamePreset();
   }
 
-  let trimmedName = $derived(audio.renamePresetValue.trim());
+  function handleRename() {
+    if (!isNameInvalid) {
+      if (audio.renamePreset(dialogs.renameTarget, dialogs.renameValue)) {
+        dialogs.closeRenamePreset();
+      }
+    }
+  }
+
+  let trimmedName = $derived(dialogs.renameValue.trim());
   let isDuplicate = $derived(
-    trimmedName !== audio.renamePresetTarget &&
+    trimmedName !== dialogs.renameTarget &&
     Boolean(audio.presets[trimmedName])
   );
   let isNameInvalid = $derived(
     !trimmedName ||
-    trimmedName === audio.renamePresetTarget ||
+    trimmedName === dialogs.renameTarget ||
     isDuplicate
   );
   let buttonTitle = $derived(
@@ -23,12 +32,12 @@
 
   function handleModalKeydown(e: KeyboardEvent) {
     if (e.key === 'Enter' && !isNameInvalid) {
-      audio.handleRenamePreset();
+      handleRename();
     }
   }
 </script>
 
-<Dialog bind:open={audio.isRenameDialogOpen} onclose={handleModalCancel}>
+<Dialog bind:open={dialogs.isRenamePresetOpen} onclose={handleCancel}>
   <h2 class="text-sm font-bold mb-2 uppercase tracking-wider text-foreground font-heading">
     Rename Preset
   </h2>
@@ -42,7 +51,7 @@
     <input
       type="text"
       placeholder="e.g. Workspace Rain, Afternoon Café"
-      bind:value={audio.renamePresetValue}
+      bind:value={dialogs.renameValue}
       onkeydown={handleModalKeydown}
       class="w-full border border-divider rounded-2xl px-3 py-2 text-xs focus:outline-none focus:border-primary placeholder:text-muted font-medium bg-surface text-foreground"
       autofocus
@@ -52,13 +61,13 @@
   <div class="flex justify-end gap-2">
     <Button
       variant="secondary"
-      onclick={handleModalCancel}
+      onclick={handleCancel}
     >
       Cancel
     </Button>
     <Button
       variant="primary"
-      onclick={() => audio.handleRenamePreset()}
+      onclick={handleRename}
       disabled={isNameInvalid}
       title={buttonTitle}
     >

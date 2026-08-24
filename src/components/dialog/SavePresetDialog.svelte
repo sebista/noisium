@@ -1,13 +1,22 @@
 <script lang="ts">
   import { audio } from '@/lib/audio.svelte';
+  import { dialogs } from '@/lib/dialogs.svelte';
   import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
 
-  function handleModalCancel() {
-    audio.isPresetDialogOpen = false;
+  function handleCancel() {
+    dialogs.closeSavePreset();
   }
 
-  let trimmedName = $derived(audio.newPresetName.trim());
+  function handleSave() {
+    if (!isNameInvalid) {
+      if (audio.savePreset(dialogs.newPresetName)) {
+        dialogs.closeSavePreset();
+      }
+    }
+  }
+
+  let trimmedName = $derived(dialogs.newPresetName.trim());
   let isDuplicate = $derived(Boolean(audio.presets[trimmedName]));
   let isNameInvalid = $derived(!trimmedName || isDuplicate || !audio.hasActiveSounds);
   let buttonTitle = $derived(
@@ -20,12 +29,12 @@
 
   function handleModalKeydown(e: KeyboardEvent) {
     if (e.key === 'Enter' && !isNameInvalid) {
-      audio.handleSavePreset();
+      handleSave();
     }
   }
 </script>
 
-<Dialog bind:open={audio.isPresetDialogOpen} onclose={handleModalCancel}>
+<Dialog bind:open={dialogs.isSavePresetOpen} onclose={handleCancel}>
   <h2 class="text-sm font-bold mb-2 uppercase tracking-wider text-foreground font-heading">
     Save Current Sound Mix
   </h2>
@@ -39,7 +48,7 @@
     <input
       type="text"
       placeholder="e.g. Workspace Rain, Afternoon Café"
-      bind:value={audio.newPresetName}
+      bind:value={dialogs.newPresetName}
       onkeydown={handleModalKeydown}
       class="w-full border border-divider rounded-2xl px-3 py-2 text-xs focus:outline-none focus:border-primary placeholder:text-muted font-medium bg-surface text-foreground"
       autofocus
@@ -49,13 +58,13 @@
   <div class="flex justify-end gap-2">
     <Button
       variant="secondary"
-      onclick={handleModalCancel}
+      onclick={handleCancel}
     >
       Cancel
     </Button>
     <Button
       variant="primary"
-      onclick={() => audio.handleSavePreset()}
+      onclick={handleSave}
       disabled={isNameInvalid}
       title={buttonTitle}
     >

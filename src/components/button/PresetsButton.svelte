@@ -15,6 +15,7 @@
     RefreshCw,
     Trash2
   } from 'lucide-svelte';
+  import { dialogs } from '@/lib/dialogs.svelte';
   import { audio } from '@/lib/audio.svelte';
   import { BUILTIN_PRESETS } from '@/lib/presets';
   import { cn } from '@/lib/utils';
@@ -73,7 +74,7 @@
       {@const IconComponent = PRESET_ICONS[name] || Sparkles}
       <button
         type="button"
-        onclick={() => { audio.handleLoadPreset(name); close(); }}
+        onclick={() => { audio.loadPreset(name); close(); }}
         class="w-full flex items-center gap-2.5 px-2.5 min-h-[34px] py-1 rounded-2xl outline-none cursor-pointer text-left text-xs font-medium hover:bg-hover text-foreground transition-colors"
         aria-label="Load preset {name}"
       >
@@ -93,7 +94,7 @@
         >
           <button
             type="button"
-            onclick={() => { audio.handleLoadPreset(name); close(); }}
+            onclick={() => { audio.loadPreset(name); close(); }}
             class="flex items-center gap-2.5 min-w-0 pr-2 grow text-left bg-transparent border-0 p-0 outline-none cursor-pointer text-foreground"
             aria-label="Load preset {name}"
           >
@@ -103,8 +104,8 @@
           <div class="flex items-center gap-0.5 shrink-0">
             <Button
               variant="ghost"
-              onclick={(e: MouseEvent) => {
-                audio.handleOpenRenameDialog(name, e);
+              onclick={() => {
+                dialogs.openRenamePreset(name);
                 close();
               }}
               title="Rename preset"
@@ -115,8 +116,8 @@
             <Button
               variant="ghost"
               disabled={!audio.hasActiveSounds}
-              onclick={(e: MouseEvent) => {
-                audio.handleOpenOverwriteDialog(name, e);
+              onclick={() => {
+                dialogs.openOverwritePreset(name);
                 close();
               }}
               title={!audio.hasActiveSounds ? 'No sounds are currently active' : 'Update preset sounds'}
@@ -126,8 +127,8 @@
             </Button>
             <Button
               variant="ghost"
-              onclick={(e: MouseEvent) => {
-                audio.handleOpenDeleteDialog(name, e);
+              onclick={() => {
+                dialogs.openDeletePreset(name);
                 close();
               }}
               title="Delete preset"
@@ -143,7 +144,7 @@
     <div class="border-t border-divider my-1"></div>
     <button
       disabled={!audio.hasActiveSounds}
-      onclick={() => { audio.isPresetDialogOpen = true; close(); }}
+      onclick={() => { dialogs.openSavePreset(); close(); }}
       class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl font-semibold outline-none text-left text-xs transition-colors cursor-pointer text-primary hover:bg-primary/20 disabled:text-muted disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
       title={!audio.hasActiveSounds ? 'No sounds are currently active' : undefined}
     >
