@@ -45,7 +45,7 @@
           title={preset.name}
         >
           {#if isActive}
-            <Check class="w-4 h-4 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+            <Check class="w-4 h-4 text-white" />
           {/if}
         </button>
       {/each}

@@ -23,7 +23,7 @@ bun run build
 ### Design Tokens & Aesthetics
 
 - **Theme Tokens**: Use semantic Tailwind v4 utility classes configured in `@theme` in [src/index.css](src/index.css) (`bg-background`, `bg-surface`, `bg-panel`, `border-divider`, `text-foreground`, `text-muted`, `bg-slider-track`, `bg-slider-track-inactive`, `hover:bg-hover`, `hover:bg-primary-hover`).
-- **Flat Aesthetic**: Follow a clean, modern flat aesthetic (`border border-divider bg-surface`). Avoid drop shadows (`shadow-*`).
+- **Flat Aesthetic**: Follow a clean, modern flat aesthetic using borders and surface colors (`border border-divider bg-surface`). Do not use any box shadows, drop shadows, or text shadows (`shadow-*`, `drop-shadow-*`, `box-shadow`, etc.) in either light or dark mode across components, buttons, popovers, or dialogs.
 - **Border Radius Hierarchy**: Use `rounded-2xl` as the standard border radius for containers, buttons, cards, popovers, and modal dialogs. Use `rounded-full` for circular elements (toggles, slider tracks, badges, icon buttons).
 - **Typography Scales**:
   - Use `font-heading` (`Outfit`) for headers, titles, and uppercase menu section tags.
