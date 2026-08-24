@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { cn } from '@/lib/utils';
-  import { onMount, onDestroy } from 'svelte';
 
   let {
     open = $bindable(false),
@@ -64,22 +63,17 @@
   $effect(() => {
     if (open) {
       updatePosition();
-    }
-  });
+      window.addEventListener('click', handleOutsideClick);
+      window.addEventListener('touchstart', handleOutsideClick, { passive: true });
+      window.addEventListener('keydown', handleKeydown);
+      window.addEventListener('resize', updatePosition);
 
-  onMount(() => {
-    window.addEventListener('click', handleOutsideClick);
-    window.addEventListener('touchstart', handleOutsideClick, { passive: true });
-    window.addEventListener('keydown', handleKeydown);
-    window.addEventListener('resize', updatePosition);
-  });
-
-  onDestroy(() => {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('click', handleOutsideClick);
-      window.removeEventListener('touchstart', handleOutsideClick);
-      window.removeEventListener('keydown', handleKeydown);
-      window.removeEventListener('resize', updatePosition);
+      return () => {
+        window.removeEventListener('click', handleOutsideClick);
+        window.removeEventListener('touchstart', handleOutsideClick);
+        window.removeEventListener('keydown', handleKeydown);
+        window.removeEventListener('resize', updatePosition);
+      };
     }
   });
 </script>
@@ -91,8 +85,7 @@
     <!-- Popover Panel -->
     <div
       class={cn(
-        'border border-divider rounded-2xl bg-surface text-foreground py-3',
-        'animate-in fade-in zoom-in-95 duration-150 focus:outline-none z-100',
+        'border border-divider rounded-2xl bg-surface text-foreground py-3 shadow-lg focus:outline-none z-100',
         mobileCenter
           ? [
               'fixed top-[var(--popover-mobile-top)] left-1/2 -translate-x-1/2',
