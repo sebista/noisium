@@ -20,12 +20,12 @@
     "tauri:build": "tauri build"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.1",
+    "@tailwindcss/vite": "^4.3.3",
     "@tauri-apps/api": "^2.11.1",
     "clsx": "^2.1.1",
     "lucide-svelte": "^1.0.1",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.1"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -88,7 +88,7 @@
         'border border-divider rounded-2xl bg-surface text-foreground py-3 focus:outline-none z-100',
         mobileCenter
           ? [
-              'fixed top-[var(--popover-mobile-top)] left-1/2 -translate-x-1/2',
+              'fixed top-(--popover-mobile-top) left-1/2 -translate-x-1/2',
               'xs:absolute xs:top-auto xs:left-auto xs:translate-x-0 xs:mt-2',
               align === 'start' && 'xs:left-0 xs:right-auto',
               align === 'end' && 'xs:right-0 xs:left-auto',

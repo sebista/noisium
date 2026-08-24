@@ -42,7 +42,7 @@
       <button
         onclick={() => (audio.activeCategory = cat.id)}
         class={cn(
-          'flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer border select-none shrink-0 min-h-[36px]',
+          'flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer border select-none shrink-0 min-h-9',
           isActive
             ? 'bg-primary text-white border-primary'
             : 'bg-surface hover:bg-hover border-divider text-foreground'
