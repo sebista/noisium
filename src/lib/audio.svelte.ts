@@ -1,4 +1,5 @@
 import type { SoundState, SoundDefinition, CategoryId } from '@/types'
+import { Music } from 'lucide-svelte'
 import { defaultSounds } from './sounds'
 import {
   getAllCustomSounds,
@@ -318,7 +319,7 @@ class AudioManager {
           name: item.name,
           url,
           category: 'custom',
-          icon: 'Music',
+          icon: Music,
         }
       })
 

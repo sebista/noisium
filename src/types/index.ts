@@ -1,3 +1,5 @@
+import type { Icon } from 'lucide-svelte'
+
 export interface SoundState {
   active: boolean
   volume: number
@@ -19,5 +21,5 @@ export interface SoundDefinition {
   name: string
   url: string
   category: Exclude<CategoryId, 'all'>
-  icon: string
+  icon: typeof Icon
 }

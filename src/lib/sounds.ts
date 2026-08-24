@@ -15,12 +15,22 @@ import windUrl from '@/assets/wind.mp3'
 
 import type { SoundDefinition, CategoryId } from '@/types'
 import {
+  type Icon,
   Waves,
   Music,
   CloudRain,
-  Sparkles,
+  CloudLightning,
+  Wind,
+  Droplet,
+  Bird,
+  Moon,
   Train,
+  Sailboat,
   Building2,
+  Coffee,
+  Flame,
+  Activity,
+  Sparkles,
 } from 'lucide-svelte'
 
 export const defaultSounds: SoundDefinition[] = [
@@ -29,99 +39,100 @@ export const defaultSounds: SoundDefinition[] = [
     name: 'Rain',
     url: rainUrl,
     category: 'nature',
-    icon: 'CloudRain',
+    icon: CloudRain,
   },
   {
     id: 'storm',
     name: 'Storm',
     url: stormUrl,
     category: 'nature',
-    icon: 'CloudLightning',
+    icon: CloudLightning,
   },
-  { id: 'wind', name: 'Wind', url: windUrl, category: 'nature', icon: 'Wind' },
+  {
+    id: 'wind',
+    name: 'Wind',
+    url: windUrl,
+    category: 'nature',
+    icon: Wind,
+  },
   {
     id: 'waves',
     name: 'Waves',
     url: wavesUrl,
     category: 'nature',
-    icon: 'Waves',
+    icon: Waves,
   },
   {
     id: 'stream',
     name: 'Stream',
     url: streamUrl,
     category: 'nature',
-    icon: 'Droplet',
+    icon: Droplet,
   },
   {
     id: 'birds',
     name: 'Birds',
     url: birdsUrl,
     category: 'nature',
-    icon: 'Bird',
+    icon: Bird,
   },
   {
     id: 'summer-night',
     name: 'Summer Night',
     url: summerNightUrl,
     category: 'nature',
-    icon: 'Moon',
+    icon: Moon,
   },
-
   {
     id: 'train',
     name: 'Train',
     url: trainUrl,
     category: 'travel',
-    icon: 'Train',
+    icon: Train,
   },
   {
     id: 'boat',
     name: 'Boat',
     url: boatUrl,
     category: 'travel',
-    icon: 'Sailboat',
+    icon: Sailboat,
   },
-
   {
     id: 'city',
     name: 'City',
     url: cityUrl,
     category: 'urban',
-    icon: 'Building2',
+    icon: Building2,
   },
   {
     id: 'coffee-shop',
     name: 'Coffee Shop',
     url: coffeeShopUrl,
     category: 'urban',
-    icon: 'Coffee',
+    icon: Coffee,
   },
-
   {
     id: 'fireplace',
     name: 'Fireplace',
     url: fireplaceUrl,
     category: 'noise',
-    icon: 'Flame',
+    icon: Flame,
   },
   {
     id: 'white-noise',
     name: 'White Noise',
     url: whiteNoiseUrl,
     category: 'noise',
-    icon: 'Activity',
+    icon: Activity,
   },
   {
     id: 'pink-noise',
     name: 'Pink Noise',
     url: pinkNoiseUrl,
     category: 'noise',
-    icon: 'Sparkles',
+    icon: Sparkles,
   },
 ]
-
-import type { Icon } from 'lucide-svelte'
 
 export interface CategoryDefinition {
   id: CategoryId

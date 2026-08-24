@@ -4,49 +4,12 @@
   import type { SoundDefinition } from '@/types';
   import Slider from './Slider.svelte';
   import Button from './Button.svelte';
-
-  import {
-    type Icon,
-    Music,
-    CloudRain,
-    CloudLightning,
-    Wind,
-    Waves,
-    Droplet,
-    Bird,
-    Moon,
-    Train,
-    Sailboat,
-    Building2,
-    Coffee,
-    Flame,
-    Sparkles,
-    Activity,
-    Trash2
-  } from 'lucide-svelte';
-
-  const IconMap: Record<string, typeof Icon> = {
-    CloudRain,
-    CloudLightning,
-    Wind,
-    Waves,
-    Droplet,
-    Bird,
-    Moon,
-    Train,
-    Sailboat,
-    Building2,
-    Coffee,
-    Flame,
-    Activity,
-    Sparkles,
-    Music,
-  };
+  import { Trash2 } from 'lucide-svelte';
 
   let { sound }: { sound: SoundDefinition } = $props();
 
   let state = $derived(audio.soundStates[sound.id] || { active: false, volume: 50 });
-  let IconComponent = $derived(IconMap[sound.icon] || Music);
+  let IconComponent = $derived(sound.icon);
 </script>
 
 <div
