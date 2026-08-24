@@ -386,6 +386,17 @@ class AudioManager {
     }
   }
 
+  #saveCustomPresets() {
+    if (typeof window === 'undefined') return
+    const customOnly: Record<string, Record<string, number>> = {}
+    for (const [name, vols] of Object.entries(this.presets)) {
+      if (!BUILTIN_PRESETS[name]) {
+        customOnly[name] = vols
+      }
+    }
+    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+  }
+
   // Preset handlers
   handleLoadPreset(name: string) {
     const presetVolumes = this.presets[name]
@@ -408,7 +419,7 @@ class AudioManager {
 
   handleSavePreset() {
     const name = this.newPresetName.trim()
-    if (!name || BUILTIN_PRESETS[name] || this.presets[name] || !this.hasActiveSounds) return
+    if (!name || this.presets[name] || !this.hasActiveSounds) return
 
     const activeVolumes: Record<string, number> = {}
     Object.keys(this.soundStates).forEach((id) => {
@@ -422,10 +433,7 @@ class AudioManager {
     }
 
     this.presets[name] = activeVolumes
-
-    const customOnly = { ...this.presets }
-    Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
-    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+    this.#saveCustomPresets()
 
     this.newPresetName = ''
     this.isPresetDialogOpen = false
@@ -444,7 +452,6 @@ class AudioManager {
     if (
       !newName ||
       oldName === newName ||
-      BUILTIN_PRESETS[newName] ||
       this.presets[newName]
     ) {
       this.isRenameDialogOpen = false
@@ -453,10 +460,7 @@ class AudioManager {
 
     this.presets[newName] = this.presets[oldName]
     delete this.presets[oldName]
-
-    const customOnly = { ...this.presets }
-    Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
-    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+    this.#saveCustomPresets()
 
     this.isRenameDialogOpen = false
   }
@@ -483,10 +487,7 @@ class AudioManager {
     }
 
     this.presets[name] = activeVolumes
-
-    const customOnly = { ...this.presets }
-    Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
-    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+    this.#saveCustomPresets()
 
     this.isOverwriteDialogOpen = false
   }
@@ -502,10 +503,7 @@ class AudioManager {
     if (!name) return
 
     delete this.presets[name]
-
-    const customOnly = { ...this.presets }
-    Object.keys(BUILTIN_PRESETS).forEach((k) => delete customOnly[k])
-    localStorage.setItem('noisium_custom_presets', JSON.stringify(customOnly))
+    this.#saveCustomPresets()
 
     this.isDeleteDialogOpen = false
     this.deletePresetTarget = ''

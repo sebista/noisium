@@ -1,6 +1,5 @@
 <script lang="ts">
   import { audio } from '@/lib/audio.svelte';
-  import { BUILTIN_PRESETS } from '@/lib/presets';
   import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
 
@@ -11,7 +10,7 @@
   let trimmedName = $derived(audio.renamePresetValue.trim());
   let isDuplicate = $derived(
     trimmedName !== audio.renamePresetTarget &&
-    (Boolean(BUILTIN_PRESETS[trimmedName]) || Boolean(audio.presets[trimmedName]))
+    Boolean(audio.presets[trimmedName])
   );
   let isNameInvalid = $derived(
     !trimmedName ||
