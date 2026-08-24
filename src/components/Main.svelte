@@ -37,10 +37,7 @@
     {#each CATEGORIES as cat}
       {@const IconComponent = cat.icon}
       {@const isActive = audio.activeCategory === cat.id}
-      {@const soundCount = audio.allSounds.filter((s) => {
-        const state = audio.soundStates[s.id];
-        return state?.active && (cat.id === 'all' || s.category === cat.id);
-      }).length}
+      {@const soundCount = audio.activeSoundCounts[cat.id]}
 
       <button
         onclick={() => (audio.activeCategory = cat.id)}

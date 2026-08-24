@@ -103,6 +103,26 @@ class AudioManager {
       .join(', ')
   }
 
+  get activeSoundCounts(): Record<CategoryId, number> {
+    const counts: Record<CategoryId, number> = {
+      all: 0,
+      nature: 0,
+      travel: 0,
+      urban: 0,
+      noise: 0,
+      custom: 0,
+    }
+    for (const sound of this.allSounds) {
+      if (this.soundStates[sound.id]?.active) {
+        counts.all += 1
+        if (sound.category in counts) {
+          counts[sound.category] += 1
+        }
+      }
+    }
+    return counts
+  }
+
   // Save states helper
   saveGlobalVolume(val: number) {
     if (val > 0) {

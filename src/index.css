@@ -128,7 +128,7 @@ body {
   overflow: hidden;
 }
 
-/* Electron Dragging */
+/* Tauri Window Dragging */
 .app-drag {
   -webkit-app-region: drag;
 }

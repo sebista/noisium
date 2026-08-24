@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import { audio } from '@/lib/audio.svelte'
   import { theme } from '@/lib/theme.svelte'
 
@@ -32,12 +33,11 @@
   })
 
   // On the desktop build, show window once the frontend mounts
-  $effect(() => {
+  onMount(() => {
     if (isTauri()) {
       getCurrentWindow().show()
     }
   })
-
 </script>
 
 <div class="w-screen h-dvh flex flex-col overflow-hidden font-sans bg-background text-foreground">

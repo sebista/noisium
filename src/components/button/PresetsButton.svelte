@@ -43,9 +43,10 @@
   let isOpen = $state(false);
   const builtinPresetNames = Object.keys(BUILTIN_PRESETS);
 
-  let hasCustomPresets = $derived(
-    Object.keys(audio.presets).some((k) => !builtinPresetNames.includes(k))
+  let customPresetNames = $derived(
+    Object.keys(audio.presets).filter((k) => !builtinPresetNames.includes(k)),
   );
+  let hasCustomPresets = $derived(customPresetNames.length > 0);
 </script>
 
 <Popover bind:open={isOpen} {align} class="w-56 px-1.5">
@@ -86,7 +87,7 @@
       <span class="block px-2 py-1 text-xs font-bold uppercase tracking-wider mb-1 text-muted font-heading">
         My Presets
       </span>
-      {#each Object.keys(audio.presets).filter((k) => !builtinPresetNames.includes(k)) as name}
+      {#each customPresetNames as name}
         <div
           class="flex items-center justify-between pl-2.5 pr-1 min-h-[34px] py-0.5 rounded-2xl text-xs font-medium group hover:bg-hover text-foreground transition-colors"
         >
@@ -103,7 +104,6 @@
             <Button
               variant="ghost"
               onclick={(e: MouseEvent) => {
-                e.stopPropagation();
                 audio.handleOpenRenameDialog(name, e);
                 close();
               }}
@@ -116,7 +116,6 @@
               variant="ghost"
               disabled={!audio.hasActiveSounds}
               onclick={(e: MouseEvent) => {
-                e.stopPropagation();
                 audio.handleOpenOverwriteDialog(name, e);
                 close();
               }}
@@ -128,7 +127,6 @@
             <Button
               variant="ghost"
               onclick={(e: MouseEvent) => {
-                e.stopPropagation();
                 audio.handleOpenDeleteDialog(name, e);
                 close();
               }}
