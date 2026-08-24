@@ -1,5 +1,6 @@
 <script lang="ts">
   import { dialogs } from '@/lib/dialogs.svelte';
+  import { openExternalLink } from '@/lib/utils';
   import Logo from '../Logo.svelte';
   import Dialog from '../ui/Dialog.svelte';
   import Button from '../ui/Button.svelte';
@@ -11,6 +12,7 @@
       href="https://github.com/sebilune/noisium"
       target="_blank"
       rel="noopener noreferrer"
+      onclick={(e) => openExternalLink('https://github.com/sebilune/noisium', e)}
       class="transition-colors duration-150 cursor-pointer text-muted hover:text-foreground flex items-center"
       aria-label="GitHub Repository"
     >
@@ -38,6 +40,7 @@
       href="https://ko-fi.com/Y0S621Z5JU"
       target="_blank"
       rel="noopener noreferrer"
+      onclick={(e) => openExternalLink('https://ko-fi.com/Y0S621Z5JU', e)}
       class="w-fit gap-1.5"
       variant="secondary"
     >
