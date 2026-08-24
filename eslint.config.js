@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'src-tauri']),
+  globalIgnores(['dist', 'src-tauri', '.wrangler']),
   {
     files: ['**/*.{ts,js}'],
     extends: [js.configs.recommended, tseslint.configs.recommended],

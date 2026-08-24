@@ -7,6 +7,7 @@
     open = $bindable(false),
     align = 'end',
     class: className = '',
+    mobileCenter = false,
     trigger,
     children,
     onclose
@@ -14,17 +15,30 @@
     open?: boolean;
     align?: 'start' | 'end' | 'center';
     class?: string;
+    mobileCenter?: boolean;
     trigger: Snippet<[{ open: boolean; toggle: (e: MouseEvent) => void }]>;
     children: Snippet<[{ close: () => void }]>;
     onclose?: () => void;
   } = $props();
 
   let containerEl = $state<HTMLDivElement | null>(null);
+  let mobileTop = $state<number>(0);
+
+  function updatePosition() {
+    if (containerEl) {
+      const rect = containerEl.getBoundingClientRect();
+      mobileTop = rect.bottom + 8;
+    }
+  }
 
   function toggle(e: MouseEvent) {
     e.stopPropagation();
     open = !open;
-    if (!open && onclose) onclose();
+    if (open) {
+      updatePosition();
+    } else if (onclose) {
+      onclose();
+    }
   }
 
   function close() {
@@ -41,21 +55,31 @@
     }
   }
 
-  function handleOutsideClick(e: MouseEvent) {
+  function handleOutsideClick(e: MouseEvent | TouchEvent) {
     if (open && containerEl && !containerEl.contains(e.target as Node)) {
       close();
     }
   }
 
+  $effect(() => {
+    if (open) {
+      updatePosition();
+    }
+  });
+
   onMount(() => {
     window.addEventListener('click', handleOutsideClick);
+    window.addEventListener('touchstart', handleOutsideClick, { passive: true });
     window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('resize', updatePosition);
   });
 
   onDestroy(() => {
     if (typeof window !== 'undefined') {
       window.removeEventListener('click', handleOutsideClick);
+      window.removeEventListener('touchstart', handleOutsideClick);
       window.removeEventListener('keydown', handleKeydown);
+      window.removeEventListener('resize', updatePosition);
     }
   });
 </script>
@@ -64,29 +88,30 @@
   {@render trigger({ open, toggle })}
 
   {#if open}
-    <!-- Mobile Backdrop for touch clarity and click-away -->
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div
-      class="fixed inset-0 bg-black/30 backdrop-blur-xs z-90 sm:hidden animate-in fade-in duration-150"
-      onclick={close}
-      aria-hidden="true"
-    ></div>
-
     <!-- Popover Panel -->
     <div
       class={cn(
-        'fixed top-[calc(4rem+env(safe-area-inset-top)+0.5rem)] left-1/2 -translate-x-1/2 z-100',
         'border border-divider rounded-2xl bg-surface text-foreground py-3',
-        'animate-in fade-in zoom-in-95 duration-150 focus:outline-none',
-        'sm:absolute sm:top-auto sm:left-auto sm:translate-x-0 sm:mt-2',
-        align === 'start' && 'sm:left-0 sm:right-auto',
-        align === 'end' && 'sm:right-0 sm:left-auto',
-        align === 'center' && 'sm:left-1/2 sm:-translate-x-1/2',
+        'animate-in fade-in zoom-in-95 duration-150 focus:outline-none z-100',
+        mobileCenter
+          ? [
+              'fixed top-[var(--popover-mobile-top)] left-1/2 -translate-x-1/2',
+              'xs:absolute xs:top-auto xs:left-auto xs:translate-x-0 xs:mt-2',
+              align === 'start' && 'xs:left-0 xs:right-auto',
+              align === 'end' && 'xs:right-0 xs:left-auto',
+              align === 'center' && 'xs:left-1/2 xs:-translate-x-1/2'
+            ]
+          : [
+              'absolute top-auto mt-2',
+              align === 'start' && 'left-0 right-auto',
+              align === 'end' && 'right-0 left-auto',
+              align === 'center' && 'left-1/2 -translate-x-1/2'
+            ],
         className
       )}
+      style={mobileCenter && mobileTop ? `--popover-mobile-top: ${mobileTop}px;` : undefined}
       role="dialog"
-      aria-modal="true"
+      aria-modal="false"
     >
       {@render children({ close })}
     </div>

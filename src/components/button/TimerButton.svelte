@@ -16,7 +16,7 @@
   );
 </script>
 
-<Popover bind:open={isOpen} align="end" class="w-64 px-4">
+<Popover bind:open={isOpen} align="end" class="w-64 px-4" mobileCenter>
   {#snippet trigger({ open, toggle })}
     <Button
       variant="icon"
