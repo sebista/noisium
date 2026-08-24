@@ -2,23 +2,34 @@
   import type { Snippet } from 'svelte';
   import { cn } from '@/lib/utils';
 
+  interface ButtonProps {
+    variant?: 'primary' | 'secondary' | 'ghost' | 'icon';
+    disabled?: boolean;
+    onclick?: (e: MouseEvent) => void;
+    href?: string;
+    target?: string;
+    rel?: string;
+    title?: string;
+    type?: 'button' | 'submit' | 'reset';
+    autofocus?: boolean;
+    class?: string;
+    children?: Snippet;
+    'aria-label'?: string;
+    'aria-expanded'?: boolean | 'true' | 'false';
+    'aria-haspopup'?: boolean | 'dialog' | 'menu' | 'true' | 'false';
+    [key: string]: unknown;
+  }
+
   let {
     variant = 'primary',
     disabled = false,
     onclick,
     href,
+    type = 'button',
     class: className = '',
     children,
     ...rest
-  }: {
-    variant?: 'primary' | 'secondary' | 'ghost' | 'icon';
-    disabled?: boolean;
-    onclick?: (e: MouseEvent) => void;
-    href?: string;
-    class?: string;
-    children?: Snippet;
-    [key: string]: any;
-  } = $props();
+  }: ButtonProps = $props();
 
   const buttonClasses = $derived(cn(
     'cursor-pointer font-semibold outline-none text-xs flex items-center justify-center select-none shrink-0 transition-colors duration-150',

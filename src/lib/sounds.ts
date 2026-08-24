@@ -121,10 +121,12 @@ export const defaultSounds: SoundDefinition[] = [
   },
 ]
 
+import type { Icon } from 'lucide-svelte'
+
 export interface CategoryDefinition {
   id: CategoryId
   label: string
-  icon: import('svelte').ComponentType
+  icon: typeof Icon
 }
 
 export const CATEGORIES: CategoryDefinition[] = [

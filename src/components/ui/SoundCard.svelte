@@ -4,8 +4,9 @@
   import type { SoundDefinition } from '@/types';
   import Slider from './Slider.svelte';
   import Button from './Button.svelte';
-  
+
   import {
+    type Icon,
     Music,
     CloudRain,
     CloudLightning,
@@ -24,7 +25,7 @@
     Trash2
   } from 'lucide-svelte';
 
-  const IconMap: Record<string, any> = {
+  const IconMap: Record<string, typeof Icon> = {
     CloudRain,
     CloudLightning,
     Wind,

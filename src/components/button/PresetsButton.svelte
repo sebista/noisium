@@ -1,5 +1,6 @@
 <script lang="ts">
   import {
+    type Icon,
     ChevronDown,
     Plus,
     Bookmark,
@@ -20,7 +21,7 @@
   import Button from '../ui/Button.svelte';
   import Popover from '../ui/Popover.svelte';
 
-  const PRESET_ICONS: Record<string, any> = {
+  const PRESET_ICONS: Record<string, typeof Icon> = {
     'Gentle Rain': CloudRain,
     'Cozy Fireplace': Flame,
     Thunderstorm: CloudLightning,
