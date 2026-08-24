@@ -70,8 +70,10 @@
     {#each builtinPresetNames as name}
       {@const IconComponent = PRESET_ICONS[name] || Sparkles}
       <button
+        type="button"
         onclick={() => { audio.handleLoadPreset(name); close(); }}
         class="w-full flex items-center gap-2.5 px-2.5 min-h-[34px] py-1 rounded-2xl outline-none cursor-pointer text-left text-xs font-medium hover:bg-hover text-foreground transition-colors"
+        aria-label="Load preset {name}"
       >
         <IconComponent class="w-3.5 h-3.5 text-muted shrink-0" />
         <span class="truncate">{name}</span>
@@ -85,16 +87,17 @@
       </span>
       {#each Object.keys(audio.presets).filter((k) => !builtinPresetNames.includes(k)) as name}
         <div
-          class="flex items-center justify-between px-2.5 min-h-[34px] py-1 rounded-2xl text-xs font-medium group hover:bg-hover cursor-pointer text-foreground transition-colors"
-          onclick={() => { audio.handleLoadPreset(name); close(); }}
-          role="button"
-          tabindex="0"
-          onkeydown={(e) => e.key === 'Enter' && audio.handleLoadPreset(name)}
+          class="flex items-center justify-between pl-2.5 pr-1 min-h-[34px] py-0.5 rounded-2xl text-xs font-medium group hover:bg-hover text-foreground transition-colors"
         >
-          <div class="flex items-center gap-2.5 min-w-0 pr-2">
+          <button
+            type="button"
+            onclick={() => { audio.handleLoadPreset(name); close(); }}
+            class="flex items-center gap-2.5 min-w-0 pr-2 grow text-left bg-transparent border-0 p-0 outline-none cursor-pointer text-foreground"
+            aria-label="Load preset {name}"
+          >
             <Bookmark class="w-3.5 h-3.5 text-muted shrink-0" />
             <span class="truncate">{name}</span>
-          </div>
+          </button>
           <div class="flex items-center gap-0.5 shrink-0">
             <Button
               variant="ghost"
@@ -104,7 +107,7 @@
                 close();
               }}
               title="Rename preset"
-              aria-label="Rename preset"
+              aria-label="Rename preset {name}"
             >
               <Pencil class="w-3.5 h-3.5" />
             </Button>
@@ -117,7 +120,7 @@
                 close();
               }}
               title={!audio.hasActiveSounds ? 'No sounds are currently active' : 'Update preset sounds'}
-              aria-label="Update preset sounds"
+              aria-label="Update preset {name} with current sounds"
             >
               <RefreshCw class="w-3.5 h-3.5" />
             </Button>
@@ -129,7 +132,7 @@
                 close();
               }}
               title="Delete preset"
-              aria-label="Delete preset"
+              aria-label="Delete preset {name}"
             >
               <Trash2 class="w-3.5 h-3.5" />
             </Button>
