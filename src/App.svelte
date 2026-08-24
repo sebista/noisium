@@ -42,15 +42,6 @@
     }
   })
 
-  // Reactively tick sleep timer when it is active and audio is playing
-  $effect(() => {
-    if (audio.timerActive && audio.isPlaying) {
-      const interval = setInterval(() => {
-        audio.tickTimer()
-      }, 1000)
-      return () => clearInterval(interval)
-    }
-  })
 </script>
 
 <div class="w-screen h-dvh flex flex-col overflow-hidden font-sans bg-background text-foreground">

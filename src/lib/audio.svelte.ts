@@ -32,6 +32,8 @@ class AudioManager {
   totalTimerDuration = $state(0)
 
   #audioPlayers: Record<string, { audio: HTMLAudioElement; url: string }> = {}
+  #timerEndTime: number | null = null
+  #timerInterval: number | null = null
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -222,21 +224,52 @@ class AudioManager {
     this.totalTimerDuration = secs
     this.timerSeconds = secs
     this.timerActive = true
+    this.#timerEndTime = Date.now() + secs * 1000
+    this.#ensureTimerInterval()
   }
 
   cancelTimer() {
     this.timerSeconds = null
     this.timerActive = false
+    this.#timerEndTime = null
+    if (this.#timerInterval !== null) {
+      clearInterval(this.#timerInterval)
+      this.#timerInterval = null
+    }
   }
 
-  tickTimer() {
-    if (this.timerSeconds === null) return
-    if (this.timerSeconds <= 1) {
+  #ensureTimerInterval() {
+    if (typeof window === 'undefined') return
+    if (this.#timerInterval !== null) return
+    this.#timerInterval = window.setInterval(() => {
+      this.#tickTimer()
+    }, 500)
+  }
+
+  #tickTimer() {
+    if (!this.timerActive || this.#timerEndTime === null) {
+      if (this.#timerInterval !== null) {
+        clearInterval(this.#timerInterval)
+        this.#timerInterval = null
+      }
+      return
+    }
+
+    if (!this.isPlaying) {
+      // While playback is paused, adjust end time so timer pauses alongside playback
+      this.#timerEndTime = Date.now() + (this.timerSeconds ?? 0) * 1000
+      return
+    }
+
+    const remaining = Math.max(
+      0,
+      Math.round((this.#timerEndTime - Date.now()) / 1000),
+    )
+    this.timerSeconds = remaining
+
+    if (remaining <= 0) {
       this.isPlaying = false
-      this.timerActive = false
-      this.timerSeconds = null
-    } else {
-      this.timerSeconds -= 1
+      this.cancelTimer()
     }
   }
 
