@@ -28,7 +28,7 @@ bun run build
 - **Typography Scales**:
   - Use `font-heading` (`Outfit`) for headers, titles, and uppercase menu section tags.
   - Use `font-sans` (`Inter`) for body copy and general interface elements.
-  - Keep micro-typography legible with a minimum scale of `text-[10px]` for badges and `text-xs` (12px) for secondary labels.
+  - Keep micro-typography legible with a minimum scale of `text-xs` (12px) for badges and secondary labels; never use sub-12px font sizes.
 
 ### Transitions & Performance
 

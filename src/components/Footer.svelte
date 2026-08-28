@@ -18,7 +18,7 @@
 <footer class="h-[calc(4rem+env(safe-area-inset-bottom))] pb-[env(safe-area-inset-bottom)] pl-[calc(1rem+env(safe-area-inset-left))] pr-[calc(1rem+env(safe-area-inset-right))] sm:pl-[calc(1.5rem+env(safe-area-inset-left))] sm:pr-[calc(1.5rem+env(safe-area-inset-right))] flex items-center justify-between border-t border-divider bg-panel shrink-0 relative overflow-hidden">
   <!-- Left: Active mix details -->
   <div class="flex flex-col justify-center w-[30%] min-w-0 z-10">
-    <span class="text-[10px] text-muted font-bold uppercase tracking-wider">
+    <span class="text-xs text-muted font-bold uppercase tracking-wider">
       Active Mix
     </span>
     <span class="text-xs font-semibold truncate leading-tight">

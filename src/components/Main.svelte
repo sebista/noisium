@@ -53,7 +53,7 @@
         {#if soundCount > 0}
           <span
             class={cn(
-              'text-[10px] font-bold px-1.5 py-0.5 rounded-full',
+              'h-4 min-w-4 px-1 flex items-center justify-center text-xs font-bold leading-none rounded-full shrink-0',
               isActive ? 'bg-white text-primary' : 'bg-primary text-white'
             )}
           >

@@ -50,7 +50,7 @@
         </svg>
       {/if}
       {#if audio.timerSeconds !== null}
-        <span class="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full scale-90">
+        <span class="absolute -bottom-1 -right-1 bg-primary text-white text-xs font-bold h-4 min-w-4 px-1 flex items-center justify-center leading-none rounded-full scale-90">
           {Math.ceil(audio.timerSeconds / 60)}m
         </span>
       {/if}
