@@ -27,7 +27,7 @@
         {#if soundCount > 0}
           <span
             class={cn(
-              'h-4.5 min-w-4.5 px-1 flex items-center justify-center text-xs font-bold leading-none rounded-full shrink-0',
+              'h-4.5 min-w-4.5 px-1 flex items-center justify-center text-xs font-bold leading-none rounded-full tabular-nums shrink-0',
               isActive ? 'bg-white text-primary' : 'bg-primary text-white'
             )}
           >
