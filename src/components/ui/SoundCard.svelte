@@ -66,7 +66,7 @@
 
   <!-- Card Bottom: Volume Slider & Delete (for custom) -->
   <div class="flex items-center gap-2.5 mt-1">
-    <span class="text-xs font-semibold w-4 text-center shrink-0">
+    <span class="text-xs font-semibold w-5 text-center tabular-nums shrink-0">
       {state.volume}
     </span>
     <div class="grow">

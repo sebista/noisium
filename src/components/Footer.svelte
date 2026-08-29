@@ -64,7 +64,7 @@
         oninput={(val) => audio.saveGlobalVolume(val)}
       />
     </div>
-    <span class="text-xs font-semibold text-right w-8 shrink-0">
+    <span class="text-xs font-semibold text-right w-8 tabular-nums shrink-0">
       {audio.globalVolume}%
     </span>
   </div>

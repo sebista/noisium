@@ -25,9 +25,15 @@ class AudioManager {
   #audioPlayers: Record<string, { audio: HTMLAudioElement; url: string }> = {}
   #timerEndTime: number | null = null
   #timerInterval: number | null = null
+  #saveSoundStatesTimer: ReturnType<typeof setTimeout> | null = null
+  #saveGlobalVolumeTimer: ReturnType<typeof setTimeout> | null = null
 
   constructor() {
     if (typeof window !== 'undefined') {
+      window.addEventListener('beforeunload', () => {
+        this.flushPendingSaves()
+      })
+
       // 1. Load global volume
       try {
         const vol = localStorage.getItem('noisium_global_volume')
@@ -114,33 +120,93 @@ class AudioManager {
     return counts
   }
 
-  // Save states helper
-  saveGlobalVolume(val: number) {
-    if (val > 0) {
-      this.previousVolume = val
+  // Flush any pending debounced writes to localStorage
+  flushPendingSaves() {
+    if (typeof window === 'undefined') return
+    if (this.#saveGlobalVolumeTimer !== null) {
+      clearTimeout(this.#saveGlobalVolumeTimer)
+      this.#saveGlobalVolumeTimer = null
+      localStorage.setItem(
+        'noisium_global_volume',
+        JSON.stringify(this.globalVolume),
+      )
     }
-    this.globalVolume = val
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('noisium_global_volume', JSON.stringify(val))
-    }
-  }
-
-  toggleMute() {
-    if (this.globalVolume === 0) {
-      this.saveGlobalVolume(this.previousVolume > 0 ? this.previousVolume : 80)
-    } else {
-      this.previousVolume = this.globalVolume
-      this.saveGlobalVolume(0)
-    }
-  }
-
-  saveSoundStates() {
-    if (typeof window !== 'undefined') {
+    if (this.#saveSoundStatesTimer !== null) {
+      clearTimeout(this.#saveSoundStatesTimer)
+      this.#saveSoundStatesTimer = null
       localStorage.setItem(
         'noisium_sound_states',
         JSON.stringify(this.soundStates),
       )
     }
+  }
+
+  // Save states helper
+  saveGlobalVolume(val: number, immediate = false) {
+    if (val > 0) {
+      this.previousVolume = val
+    }
+    this.globalVolume = val
+    if (typeof window === 'undefined') return
+
+    if (immediate) {
+      if (this.#saveGlobalVolumeTimer !== null) {
+        clearTimeout(this.#saveGlobalVolumeTimer)
+        this.#saveGlobalVolumeTimer = null
+      }
+      localStorage.setItem('noisium_global_volume', JSON.stringify(val))
+      return
+    }
+
+    if (this.#saveGlobalVolumeTimer !== null) {
+      clearTimeout(this.#saveGlobalVolumeTimer)
+    }
+    this.#saveGlobalVolumeTimer = setTimeout(() => {
+      this.#saveGlobalVolumeTimer = null
+      localStorage.setItem(
+        'noisium_global_volume',
+        JSON.stringify(this.globalVolume),
+      )
+    }, 250)
+  }
+
+  toggleMute() {
+    if (this.globalVolume === 0) {
+      this.saveGlobalVolume(
+        this.previousVolume > 0 ? this.previousVolume : 80,
+        true,
+      )
+    } else {
+      this.previousVolume = this.globalVolume
+      this.saveGlobalVolume(0, true)
+    }
+  }
+
+  saveSoundStates(immediate = false) {
+    if (typeof window === 'undefined') return
+
+    if (immediate) {
+      if (this.#saveSoundStatesTimer !== null) {
+        clearTimeout(this.#saveSoundStatesTimer)
+        this.#saveSoundStatesTimer = null
+      }
+      localStorage.setItem(
+        'noisium_sound_states',
+        JSON.stringify(this.soundStates),
+      )
+      return
+    }
+
+    if (this.#saveSoundStatesTimer !== null) {
+      clearTimeout(this.#saveSoundStatesTimer)
+    }
+    this.#saveSoundStatesTimer = setTimeout(() => {
+      this.#saveSoundStatesTimer = null
+      localStorage.setItem(
+        'noisium_sound_states',
+        JSON.stringify(this.soundStates),
+      )
+    }, 250)
   }
 
   // Sync Audio Players with current state
@@ -175,10 +241,13 @@ class AudioManager {
         ? (state.volume / 100) * (this.globalVolume / 100)
         : 0
 
-      try {
-        audio.volume = Math.max(0, Math.min(1, targetActualVolume))
-      } catch {
-        // Ignore
+      const clampedVolume = Math.max(0, Math.min(1, targetActualVolume))
+      if (Math.abs(audio.volume - clampedVolume) > 0.0001) {
+        try {
+          audio.volume = clampedVolume
+        } catch {
+          // Ignore
+        }
       }
 
       if (targetActualVolume > 0) {
@@ -201,7 +270,7 @@ class AudioManager {
     if (!current) return
 
     current.active = !current.active
-    this.saveSoundStates()
+    this.saveSoundStates(true)
 
     const hasActive = Object.values(this.soundStates).some((s) => s.active)
     if (!hasActive) {
