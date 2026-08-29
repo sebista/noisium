@@ -85,7 +85,7 @@
     <!-- Popover Panel -->
     <div
       class={cn(
-        'border border-divider rounded-2xl bg-surface text-foreground py-3 focus:outline-none z-100',
+        'border border-divider rounded-2xl bg-surface text-foreground py-3 focus:outline-none z-100 app-no-drag',
         mobileCenter
           ? [
               'fixed top-(--popover-mobile-top) left-1/2 -translate-x-1/2',
