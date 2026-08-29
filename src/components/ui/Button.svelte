@@ -32,7 +32,7 @@
   }: ButtonProps = $props();
 
   const buttonClasses = $derived(cn(
-    'cursor-pointer font-semibold outline-none text-xs flex items-center justify-center select-none shrink-0 transition-colors duration-150',
+    'cursor-pointer font-semibold outline-none text-xs flex items-center justify-center select-none shrink-0',
     // Variants
     variant === 'primary' && 'px-4 py-1.5 bg-primary hover:bg-primary-hover text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed',
     variant === 'secondary' && 'px-3.5 py-1.5 border border-divider bg-surface hover:bg-hover text-foreground rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed',

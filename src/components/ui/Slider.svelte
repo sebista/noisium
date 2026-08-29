@@ -39,14 +39,14 @@
   <!-- Custom track background -->
   <div
     class={cn(
-      'absolute left-0 right-0 h-1.5 rounded-full pointer-events-none transition-colors duration-150 overflow-hidden peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2',
+      'absolute left-0 right-0 h-1.5 rounded-full pointer-events-none overflow-hidden peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2',
       disabled ? 'bg-slider-track-inactive' : 'bg-slider-track'
     )}
   >
     <!-- Active colored range bar showing progress for both active and inactive -->
     <div
       class={cn(
-        'h-full rounded-full transition-colors duration-150',
+        'h-full rounded-full',
         disabled ? 'bg-slider-progress-inactive' : 'bg-primary'
       )}
       style="width: {percentage}%;"

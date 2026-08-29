@@ -75,7 +75,7 @@
       <button
         type="button"
         onclick={() => { audio.loadPreset(name); close(); }}
-        class="w-full flex items-center gap-2.5 px-2.5 min-h-[34px] py-1 rounded-2xl outline-none cursor-pointer text-left text-xs font-medium hover:bg-hover text-foreground transition-colors"
+        class="w-full flex items-center gap-2.5 px-2.5 min-h-[34px] py-1 rounded-2xl outline-none cursor-pointer text-left text-xs font-medium hover:bg-hover text-foreground"
         aria-label="Load preset {name}"
       >
         <IconComponent class="w-3.5 h-3.5 text-muted shrink-0" />
@@ -90,7 +90,7 @@
       </span>
       {#each customPresetNames as name}
         <div
-          class="flex items-center justify-between pl-2.5 pr-1 min-h-[34px] py-0.5 rounded-2xl text-xs font-medium group hover:bg-hover text-foreground transition-colors"
+          class="flex items-center justify-between pl-2.5 pr-1 min-h-[34px] py-0.5 rounded-2xl text-xs font-medium group hover:bg-hover text-foreground"
         >
           <button
             type="button"
@@ -145,7 +145,7 @@
     <button
       disabled={!audio.hasActiveSounds}
       onclick={() => { dialogs.openSavePreset(); close(); }}
-      class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl font-semibold outline-none text-left text-xs transition-colors cursor-pointer text-primary hover:bg-primary/20 disabled:text-muted disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+      class="w-full flex items-center gap-2 px-2.5 min-h-[34px] py-1 rounded-2xl font-semibold outline-none text-left text-xs cursor-pointer text-primary hover:bg-primary/20 disabled:text-muted disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
       title={!audio.hasActiveSounds ? 'No sounds are currently active' : undefined}
     >
       <Plus class="w-4 h-4" />

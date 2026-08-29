@@ -14,7 +14,7 @@
 
 <label
   class={cn(
-    'flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-2xl border border-divider outline-none transition-colors duration-150 cursor-pointer bg-surface hover:bg-hover text-foreground',
+    'flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-2xl border border-divider outline-none cursor-pointer bg-surface hover:bg-hover text-foreground',
     className
   )}
 >

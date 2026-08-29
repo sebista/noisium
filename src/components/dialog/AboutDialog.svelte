@@ -13,7 +13,7 @@
       target="_blank"
       rel="noopener noreferrer"
       onclick={(e) => openExternalLink('https://github.com/sebilune/noisium', e)}
-      class="transition-colors duration-150 cursor-pointer text-muted hover:text-foreground flex items-center"
+      class="cursor-pointer text-muted hover:text-foreground flex items-center"
       aria-label="GitHub Repository"
     >
       <svg

@@ -14,7 +14,7 @@
       <button
         onclick={() => audio.activeCategory = cat.id}
         class={cn(
-          'w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-left text-xs font-semibold transition-colors duration-150 cursor-pointer select-none border-0 bg-transparent outline-none',
+          'w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-left text-xs font-semibold cursor-pointer select-none border-0 bg-transparent outline-none',
           isActive
             ? 'bg-primary text-white'
             : 'hover:bg-hover hover:text-foreground text-foreground/80'

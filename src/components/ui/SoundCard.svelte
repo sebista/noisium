@@ -14,7 +14,7 @@
 
 <div
   class={cn(
-    'border rounded-2xl p-4 flex flex-col justify-between relative group select-none transition-colors duration-150 text-foreground',
+    'border rounded-2xl p-4 flex flex-col justify-between relative group select-none text-foreground',
     state.active
       ? 'bg-primary/10 border-primary'
       : 'bg-surface border-divider hover:bg-hover'
@@ -51,7 +51,7 @@
     <!-- Toggle switch visual -->
     <div
       class={cn(
-        'w-7.5 h-4.5 rounded-full p-0.5 transition-colors shrink-0 flex items-center',
+        'w-7.5 h-4.5 rounded-full p-0.5 shrink-0 flex items-center',
         state.active ? 'bg-primary' : 'bg-divider'
       )}
     >
