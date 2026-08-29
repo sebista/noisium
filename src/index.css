@@ -138,6 +138,7 @@ body {
 .app-drag input,
 .app-drag select,
 .app-drag [role='button'],
-.app-no-drag {
+.app-no-drag,
+.app-no-drag * {
   -webkit-app-region: no-drag;
 }

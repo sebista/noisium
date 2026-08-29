@@ -13,7 +13,7 @@
 
 <header class="h-[calc(4rem+env(safe-area-inset-top))] pt-[env(safe-area-inset-top)] pl-[calc(1rem+env(safe-area-inset-left))] pr-[calc(1rem+env(safe-area-inset-right))] sm:pl-[calc(1.5rem+env(safe-area-inset-left))] sm:pr-[calc(1.5rem+env(safe-area-inset-right))] flex items-center justify-between border-b border-divider bg-panel shrink-0 select-none app-drag">
   <!-- Left -->
-  <div class="flex items-center gap-2 lg:gap-4">
+  <div class="flex items-center gap-2 lg:gap-4 app-no-drag">
     <div class="flex items-center gap-2">
       <Logo class="w-6 h-6 text-primary" />
       <span class="text-lg font-bold tracking-wide font-heading">
@@ -33,7 +33,7 @@
   </div>
 
   <!-- Right -->
-  <div class="flex items-center gap-2 lg:gap-3 z-10">
+  <div class="flex items-center gap-2 lg:gap-3 z-10 app-no-drag">
     <TimerButton />
     <ColorsButton />
     <Button
