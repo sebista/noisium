@@ -28,39 +28,27 @@ Web first, this is a Svelte rewrite and modernization of an old React project of
 
 Todo
 
-### MacOS
-
-Todo
-
-### Linux
-
-Todo
-
 ## Build From Source
 
-Ensure you have [Bun](https://bun.sh/) installed. For desktop builds, you will also need [Rust](https://www.rust-lang.org/) and [Tauri's prerequisites](https://tauri.app/start/prerequisites/) for your system.
+### Windows
 
-### Install Dependencies
+Ensure you have the following installed on your system:
+
+- **[Git](https://git-scm.com/)**
+- **[Bun](https://bun.sh/)**
+- **[Cargo (Rust)](https://rust-lang.org/tools/install/)**
+- **[Microsoft Visual Studio C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)**
+
+Open PowerShell and run the following commands:
 
 ```bash
+git clone https://github.com/sebilune/noisium.git
+cd noisium
 bun install
-```
-
-### Web
-
-To build the web assets (files will be compiled to `dist/web`):
-
-```bash
-bun run build
-```
-
-### Desktop
-
-To build the desktop app (Tauri will automatically compile and package it for the operating system you are currently using to `src-tauri/target/release`):
-
-```bash
 bun run tauri:build
 ```
+
+You should now have a built version of the desktop app in the `src-tauri/target/release` directory.
 
 ## Technologies
 
