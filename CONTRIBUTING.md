@@ -32,7 +32,6 @@ bun run build
 
 ### Transitions & Performance
 
-- Use targeted transitions (e.g., `transition-colors duration-150` or `transition-transform duration-200`) instead of `transition-all` to prevent layout recalculations and ensure smooth 60/120fps interactions.
 - Refrain from using enlarging or scaling effects (e.g., `hover:scale-110`) on hover/focus states for buttons or slider thumbs. Keep component dimensions stable.
 
 ### Imports
