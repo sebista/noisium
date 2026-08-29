@@ -48,7 +48,7 @@ bun install
 bun run tauri:build
 ```
 
-You should now have a built version of the desktop app in the `src-tauri/target/release` directory.
+The compiled application binary will be located in the `src-tauri/target/release` directory.
 
 ## Technologies
 
