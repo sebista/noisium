@@ -80,4 +80,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on Noisium's developm
 
 ## License
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)** License. See the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the **GNU General Public License v2.0 (GPL-2.0)** License. See the [LICENSE](LICENSE) file for details.
