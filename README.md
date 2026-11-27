@@ -1,3 +1,11 @@
+<p align="left">
+  <img src="https://img.shields.io/github/license/sebilune/noisium?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/github/repo-size/sebilune/noisium?style=flat-square" alt="Repo size" />
+  <img src="https://img.shields.io/github/last-commit/sebilune/noisium?style=flat-square" alt="Last commit" />
+  <img src="https://img.shields.io/github/languages/top/sebilune/noisium?style=flat-square" alt="Top language" />
+  <img src="https://img.shields.io/github/languages/count/sebilune/noisium?style=flat-square" alt="Language count" />
+</p>
+
 # <img src="public/favicon.svg" width="32" height="32" valign="middle" /> Noisium
 
 **Create your own ambience**. Try it **[here](https://noisium.pages.dev)**.
